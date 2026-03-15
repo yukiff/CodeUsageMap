@@ -3,6 +3,7 @@ using System.Xml.Linq;
 using CodeUsageMap.Contracts.Graph;
 using CodeUsageMap.Contracts.Presentation;
 using CodeUsageMap.Contracts.Serialization;
+using CodeUsageMap.Core.Compatibility;
 
 namespace CodeUsageMap.Core.Serialization;
 
@@ -15,7 +16,7 @@ public sealed class DgmlExporter : IUsageGraphSerializer
 
     public string ToDgml(UsageGraph graph)
     {
-        ArgumentNullException.ThrowIfNull(graph);
+        Guard.NotNull(graph, nameof(graph));
 
         XNamespace ns = "http://schemas.microsoft.com/vs/2009/dgml";
 
@@ -49,8 +50,8 @@ public sealed class DgmlExporter : IUsageGraphSerializer
 
     public string ToDgmlDocument(AnalysisResult result, AnalyzeRequest request)
     {
-        ArgumentNullException.ThrowIfNull(result);
-        ArgumentNullException.ThrowIfNull(request);
+        Guard.NotNull(result, nameof(result));
+        Guard.NotNull(request, nameof(request));
 
         var metadata = UsageGraphJsonSerializer.CreateMetadata(result, request);
         XNamespace ns = "http://schemas.microsoft.com/vs/2009/dgml";

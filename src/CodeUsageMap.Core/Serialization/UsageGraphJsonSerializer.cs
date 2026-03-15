@@ -3,6 +3,7 @@ using CodeUsageMap.Contracts.Analysis;
 using CodeUsageMap.Contracts.Graph;
 using CodeUsageMap.Contracts.Presentation;
 using CodeUsageMap.Contracts.Serialization;
+using CodeUsageMap.Core.Compatibility;
 
 namespace CodeUsageMap.Core.Serialization;
 
@@ -16,7 +17,7 @@ public sealed class UsageGraphJsonSerializer : IUsageGraphSerializer
 
     public string ToJson(UsageGraph graph)
     {
-        ArgumentNullException.ThrowIfNull(graph);
+        Guard.NotNull(graph, nameof(graph));
         return JsonSerializer.Serialize(graph, SerializerOptions);
     }
 
@@ -27,8 +28,8 @@ public sealed class UsageGraphJsonSerializer : IUsageGraphSerializer
 
     public string ToJsonDocument(AnalysisResult result, AnalyzeRequest request)
     {
-        ArgumentNullException.ThrowIfNull(result);
-        ArgumentNullException.ThrowIfNull(request);
+        Guard.NotNull(result, nameof(result));
+        Guard.NotNull(request, nameof(request));
 
         var document = new UsageGraphDocument
         {
@@ -41,9 +42,9 @@ public sealed class UsageGraphJsonSerializer : IUsageGraphSerializer
 
     public string ToViewModelJsonDocument(UsageMapViewModel viewModel, AnalysisResult result, AnalyzeRequest request)
     {
-        ArgumentNullException.ThrowIfNull(viewModel);
-        ArgumentNullException.ThrowIfNull(result);
-        ArgumentNullException.ThrowIfNull(request);
+        Guard.NotNull(viewModel, nameof(viewModel));
+        Guard.NotNull(result, nameof(result));
+        Guard.NotNull(request, nameof(request));
 
         var document = new UsageMapViewModelDocument
         {
@@ -56,8 +57,8 @@ public sealed class UsageGraphJsonSerializer : IUsageGraphSerializer
 
     public string ToDgmlDocument(AnalysisResult result, AnalyzeRequest request)
     {
-        ArgumentNullException.ThrowIfNull(result);
-        ArgumentNullException.ThrowIfNull(request);
+        Guard.NotNull(result, nameof(result));
+        Guard.NotNull(request, nameof(request));
 
         return new DgmlExporter().ToDgmlDocument(result, request);
     }
@@ -101,6 +102,6 @@ public sealed class UsageGraphJsonSerializer : IUsageGraphSerializer
             return preferredLoader;
         }
 
-        return OperatingSystem.IsWindows() ? "msbuild(default)" : "adhoc(default)";
+        return PlatformSupport.IsWindows() ? "msbuild(default)" : "adhoc(default)";
     }
 }

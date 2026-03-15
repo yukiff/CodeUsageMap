@@ -1,3 +1,5 @@
+using CodeUsageMap.Core.Compatibility;
+
 namespace CodeUsageMap.Core.Symbols;
 
 public static class WorkspaceLoaderFactory
@@ -19,7 +21,7 @@ public static class WorkspaceLoaderFactory
             return new AdhocWorkspaceLoader();
         }
 
-        return OperatingSystem.IsWindows()
+        return PlatformSupport.IsWindows()
             ? new MSBuildWorkspaceLoader()
             : new AdhocWorkspaceLoader();
     }

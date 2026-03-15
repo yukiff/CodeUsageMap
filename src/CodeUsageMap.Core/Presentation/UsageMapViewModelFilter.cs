@@ -1,4 +1,5 @@
 using CodeUsageMap.Contracts.Presentation;
+using CodeUsageMap.Core.Compatibility;
 
 namespace CodeUsageMap.Core.Presentation;
 
@@ -6,8 +7,8 @@ public sealed class UsageMapViewModelFilter
 {
     public UsageMapViewModel Apply(UsageMapViewModel model, UsageMapFilterCriteria criteria)
     {
-        ArgumentNullException.ThrowIfNull(model);
-        ArgumentNullException.ThrowIfNull(criteria);
+        Guard.NotNull(model, nameof(model));
+        Guard.NotNull(criteria, nameof(criteria));
 
         var incoming = model.IncomingRelations.Where(relation => Matches(relation, criteria)).ToArray();
         var outgoing = model.OutgoingRelations.Where(relation => Matches(relation, criteria)).ToArray();

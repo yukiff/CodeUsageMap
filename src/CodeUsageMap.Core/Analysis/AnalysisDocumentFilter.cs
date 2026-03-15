@@ -1,4 +1,5 @@
 using CodeUsageMap.Contracts.Analysis;
+using CodeUsageMap.Core.Compatibility;
 
 namespace CodeUsageMap.Core.Analysis;
 
@@ -15,7 +16,7 @@ internal static class AnalysisDocumentFilter
 
     public static bool ShouldInclude(string projectName, string? filePath, AnalyzeOptions options)
     {
-        ArgumentNullException.ThrowIfNull(options);
+        Guard.NotNull(options, nameof(options));
 
         if (options.ExcludeTests && IsTestProject(projectName, filePath))
         {

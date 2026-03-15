@@ -1,3 +1,4 @@
+using CodeUsageMap.Core.Compatibility;
 using Microsoft.CodeAnalysis;
 
 namespace CodeUsageMap.Core.Symbols;
@@ -21,8 +22,8 @@ internal sealed class MetadataSymbolNormalizer
         Solution solution,
         CancellationToken cancellationToken)
     {
-        ArgumentNullException.ThrowIfNull(symbol);
-        ArgumentNullException.ThrowIfNull(solution);
+        Guard.NotNull(symbol, nameof(symbol));
+        Guard.NotNull(solution, nameof(solution));
 
         if (symbol.Locations.Any(static location => location.IsInSource))
         {

@@ -2,6 +2,7 @@ using CodeUsageMap.Contracts.Analysis;
 using CodeUsageMap.Contracts.Diagnostics;
 using CodeUsageMap.Contracts.Graph;
 using CodeUsageMap.Core.Analysis;
+using CodeUsageMap.Core.Compatibility;
 using CodeUsageMap.Core.Di;
 using CodeUsageMap.Core.Events;
 using CodeUsageMap.Core.Implementations;
@@ -60,7 +61,7 @@ public sealed class CSharpUsageAnalyzer : IUsageAnalyzer
 
     public async Task<AnalysisResult> AnalyzeAsync(AnalyzeRequest request, CancellationToken cancellationToken)
     {
-        ArgumentNullException.ThrowIfNull(request);
+        Guard.NotNull(request, nameof(request));
 
         var diagnostics = new List<AnalysisDiagnostic>();
         var graph = new UsageGraph();
@@ -853,7 +854,7 @@ public sealed class CSharpUsageAnalyzer : IUsageAnalyzer
                 return preferredLoader;
             }
 
-            return OperatingSystem.IsWindows() ? "msbuild(default)" : "adhoc(default)";
+            return PlatformSupport.IsWindows() ? "msbuild(default)" : "adhoc(default)";
         }
 
         static IReadOnlyDictionary<string, string> CreateProperties(params (string Key, object? Value)[] items)

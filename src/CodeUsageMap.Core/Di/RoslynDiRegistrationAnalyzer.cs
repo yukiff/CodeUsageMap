@@ -2,6 +2,7 @@ using CodeUsageMap.Contracts.Analysis;
 using CodeUsageMap.Contracts.Diagnostics;
 using CodeUsageMap.Contracts.Graph;
 using CodeUsageMap.Core.Analysis;
+using CodeUsageMap.Core.Compatibility;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Operations;
@@ -23,9 +24,9 @@ public sealed class RoslynDiRegistrationAnalyzer
         AnalyzeOptions options,
         CancellationToken cancellationToken)
     {
-        ArgumentNullException.ThrowIfNull(symbol);
-        ArgumentNullException.ThrowIfNull(solution);
-        ArgumentNullException.ThrowIfNull(options);
+        Guard.NotNull(symbol, nameof(symbol));
+        Guard.NotNull(solution, nameof(solution));
+        Guard.NotNull(options, nameof(options));
 
         var targetType = ResolveTargetType(symbol);
         if (targetType is null)

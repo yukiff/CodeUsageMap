@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using CodeUsageMap.Core.Compatibility;
 using CodeUsageMap.Core.Serialization;
 using CodeUsageMap.Vsix.ViewModels;
 using Microsoft.VisualStudio.Shell;
@@ -19,7 +20,7 @@ internal sealed class UsageMapExportService
         UsageMapExportFormat format,
         CancellationToken cancellationToken)
     {
-        ArgumentNullException.ThrowIfNull(snapshot);
+        Guard.NotNull(snapshot, nameof(snapshot));
 
         await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
 

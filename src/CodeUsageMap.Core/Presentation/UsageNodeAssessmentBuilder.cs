@@ -1,6 +1,7 @@
 using System.Globalization;
 using CodeUsageMap.Contracts.Graph;
 using CodeUsageMap.Contracts.Presentation;
+using CodeUsageMap.Core.Compatibility;
 
 namespace CodeUsageMap.Core.Presentation;
 
@@ -8,8 +9,8 @@ public sealed class UsageNodeAssessmentBuilder
 {
     public UsageNodeAssessmentViewModel Build(UsageMapViewModel model, string nodeId)
     {
-        ArgumentNullException.ThrowIfNull(model);
-        ArgumentException.ThrowIfNullOrWhiteSpace(nodeId);
+        Guard.NotNull(model, nameof(model));
+        Guard.NotNullOrWhiteSpace(nodeId, nameof(nodeId));
 
         var node = model.Nodes.FirstOrDefault(candidate => string.Equals(candidate.Id, nodeId, StringComparison.Ordinal));
         if (node is null)

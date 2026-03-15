@@ -1,3 +1,4 @@
+using CodeUsageMap.Core.Compatibility;
 using Microsoft.CodeAnalysis;
 
 namespace CodeUsageMap.Core.Symbols;
@@ -9,8 +10,8 @@ internal sealed class SameSolutionAssemblyMatcher
         IAssemblySymbol assemblySymbol,
         CancellationToken cancellationToken)
     {
-        ArgumentNullException.ThrowIfNull(solution);
-        ArgumentNullException.ThrowIfNull(assemblySymbol);
+        Guard.NotNull(solution, nameof(solution));
+        Guard.NotNull(assemblySymbol, nameof(assemblySymbol));
 
         var assemblyName = assemblySymbol.Identity.Name;
         var matches = new List<Project>();

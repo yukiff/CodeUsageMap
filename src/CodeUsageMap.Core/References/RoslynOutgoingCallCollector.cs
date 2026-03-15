@@ -1,6 +1,7 @@
 using CodeUsageMap.Contracts.Analysis;
 using CodeUsageMap.Contracts.Graph;
 using CodeUsageMap.Core.Analysis;
+using CodeUsageMap.Core.Compatibility;
 using CodeUsageMap.Core.Symbols;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -28,9 +29,9 @@ public sealed class RoslynOutgoingCallCollector
         AnalyzeOptions options,
         CancellationToken cancellationToken)
     {
-        ArgumentNullException.ThrowIfNull(symbol);
-        ArgumentNullException.ThrowIfNull(solution);
-        ArgumentNullException.ThrowIfNull(options);
+        Guard.NotNull(symbol, nameof(symbol));
+        Guard.NotNull(solution, nameof(solution));
+        Guard.NotNull(options, nameof(options));
 
         var results = new Dictionary<string, OutgoingCallInfo>(StringComparer.Ordinal);
 

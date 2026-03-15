@@ -1,4 +1,5 @@
 using CodeUsageMap.Contracts.Graph;
+using CodeUsageMap.Core.Compatibility;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -11,8 +12,8 @@ internal static class ReferenceClassifier
         SemanticModel semanticModel,
         CancellationToken cancellationToken)
     {
-        ArgumentNullException.ThrowIfNull(node);
-        ArgumentNullException.ThrowIfNull(semanticModel);
+        Guard.NotNull(node, nameof(node));
+        Guard.NotNull(semanticModel, nameof(semanticModel));
 
         var classifiedNode = node
             .AncestorsAndSelf()

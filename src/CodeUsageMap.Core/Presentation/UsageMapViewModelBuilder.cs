@@ -1,6 +1,7 @@
 using CodeUsageMap.Contracts.Analysis;
 using CodeUsageMap.Contracts.Graph;
 using CodeUsageMap.Contracts.Presentation;
+using CodeUsageMap.Core.Compatibility;
 
 namespace CodeUsageMap.Core.Presentation;
 
@@ -8,7 +9,7 @@ public sealed class UsageMapViewModelBuilder
 {
     public UsageMapViewModel Build(AnalysisResult result)
     {
-        ArgumentNullException.ThrowIfNull(result);
+        Guard.NotNull(result, nameof(result));
 
         var rootNode = result.Graph.Nodes.FirstOrDefault() ?? CreateResolutionPlaceholder(result.SymbolResolution);
 

@@ -1,5 +1,6 @@
 using System.Collections.Concurrent;
 using CodeUsageMap.Contracts.Analysis;
+using CodeUsageMap.Core.Compatibility;
 
 namespace CodeUsageMap.Core.Analysis;
 
@@ -9,7 +10,7 @@ internal sealed class AnalysisResultCache
 
     public bool TryGet(AnalyzeRequest request, out AnalysisResult result)
     {
-        ArgumentNullException.ThrowIfNull(request);
+        Guard.NotNull(request, nameof(request));
 
         result = default!;
 
@@ -25,8 +26,8 @@ internal sealed class AnalysisResultCache
 
     public void Store(AnalyzeRequest request, AnalysisResult result)
     {
-        ArgumentNullException.ThrowIfNull(request);
-        ArgumentNullException.ThrowIfNull(result);
+        Guard.NotNull(request, nameof(request));
+        Guard.NotNull(result, nameof(result));
 
         var solutionTimestamp = GetSolutionTimestamp(request.SolutionPath);
         _entries[CreateKey(request, solutionTimestamp)] = new CacheEntry
