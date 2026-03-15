@@ -74,19 +74,18 @@
 
 現状:
 
-- `RepresentativeSample.sln` は 3 project の直線的な依存が中心
-- cross-project、DI、event、override は見ているが、fan-in / fan-out の強い依存は薄い
+- 完了
+- [MixedDependencySample.sln](/Users/funabashiyuuki/programming/CodeUsageMap/samples/MixedDependencySample/MixedDependencySample.sln) と [CodeUsageMap.MixedDependencyProbe](/Users/funabashiyuuki/programming/CodeUsageMap/tools/CodeUsageMap.MixedDependencyProbe/Program.cs) を追加済み
+- Mac validation に組み込み済み
 
 やること:
 
-- 4 project 以上の sample solution を追加する
-- 複数の app / core / adapter / test project を含める
-- 1 root から複数 project へ outbound するケース
-- 複数 project から 1 root へ inbound するケース
+- なし
 
 完了条件:
 
 - 単一 solution 内の複雑依存を representative asset で再現できる
+- fan-in / fan-out の固定検証が自動化されている
 
 依存:
 
@@ -96,18 +95,19 @@
 
 現状:
 
-- same-solution DLL 正規化は `MetadataNormalizationProbe` の synthetic workspace で確認済み
-- actual `.sln` に source project と binary-reference project を同居させた固定資産はない
+- 完了
+- [BinaryReferenceSample.sln](/Users/funabashiyuuki/programming/CodeUsageMap/samples/BinaryReferenceSample/BinaryReferenceSample.sln) と [CodeUsageMap.BinaryReferenceSampleProbe](/Users/funabashiyuuki/programming/CodeUsageMap/tools/CodeUsageMap.BinaryReferenceSampleProbe/Program.cs) を追加済み
+- `AdhocWorkspaceLoader` は actual solution の `HintPath` 付き binary reference を読むように拡張済み
+- Mac validation に組み込み済み
 
 やること:
 
-- source project を含む
-- 別 project が DLL reference で同一 assembly を参照する
-- source に戻せるケースと戻せないケースを同じ solution で持つ
+- なし
 
 完了条件:
 
-- Mac / Windows の両方で同じ asset を使って same-solution DLL 正規化を繰り返し検証できる
+- Mac で actual solution を使った same-solution DLL 正規化を繰り返し検証できる
+- Windows では C-201 / T-003 の実機確認に再利用できる
 
 依存:
 
@@ -203,11 +203,9 @@
 
 ## 5. 優先順位の提案
 
-1. C-303 複数プロジェクト mixed dependency sample solution
-2. C-304 actual solution での same-solution DLL 正規化固定
-3. C-305 複数実装 / DI 曖昧性 sample
-4. C-306 symbol 解決の曖昧性 sample
-5. C-307 external package / metadata dependency sample
-6. C-201 same-solution DLL 正規化の Windows ケース固定
-7. C-302 `.NET Framework 4.8` representative sample solution
-8. C-103 export と actual Tool Window 表示の整合確認
+1. C-305 複数実装 / DI 曖昧性 sample
+2. C-306 symbol 解決の曖昧性 sample
+3. C-307 external package / metadata dependency sample
+4. C-201 same-solution DLL 正規化の Windows ケース固定
+5. C-302 `.NET Framework 4.8` representative sample solution
+6. C-103 export と actual Tool Window 表示の整合確認

@@ -43,6 +43,14 @@ run_step \
   sh -c 'cd samples/RepresentativeSample && dotnet build RepresentativeSample.sln --disable-build-servers -m:1 -p:UseSharedCompilation=false -v minimal'
 
 run_step \
+  "Build Mixed Dependency Sample" \
+  sh -c 'cd samples/MixedDependencySample && dotnet build MixedDependencySample.sln --disable-build-servers -m:1 -p:UseSharedCompilation=false -v minimal'
+
+run_step \
+  "Build Binary Reference Sample" \
+  sh -c 'cd samples/BinaryReferenceSample && dotnet build Binary.SourceLib/Binary.SourceLib.csproj --disable-build-servers -m:1 -p:UseSharedCompilation=false -v minimal && dotnet build Binary.Consumer/Binary.Consumer.csproj --disable-build-servers -m:1 -p:UseSharedCompilation=false -v minimal'
+
+run_step \
   "Build Metadata Normalization Probe" \
   dotnet build tools/CodeUsageMap.MetadataNormalizationProbe/CodeUsageMap.MetadataNormalizationProbe.csproj --disable-build-servers -m:1 -p:UseSharedCompilation=false -v minimal
 
@@ -97,6 +105,22 @@ run_step \
 run_step \
   "Run Representative Sample Probe" \
   dotnet tools/CodeUsageMap.RepresentativeSampleProbe/bin/Debug/net9.0/CodeUsageMap.RepresentativeSampleProbe.dll
+
+run_step \
+  "Build Mixed Dependency Probe" \
+  dotnet build tools/CodeUsageMap.MixedDependencyProbe/CodeUsageMap.MixedDependencyProbe.csproj --disable-build-servers -m:1 -p:UseSharedCompilation=false -v minimal
+
+run_step \
+  "Run Mixed Dependency Probe" \
+  dotnet tools/CodeUsageMap.MixedDependencyProbe/bin/Debug/net9.0/CodeUsageMap.MixedDependencyProbe.dll
+
+run_step \
+  "Build Binary Reference Sample Probe" \
+  dotnet build tools/CodeUsageMap.BinaryReferenceSampleProbe/CodeUsageMap.BinaryReferenceSampleProbe.csproj --disable-build-servers -m:1 -p:UseSharedCompilation=false -v minimal
+
+run_step \
+  "Run Binary Reference Sample Probe" \
+  dotnet tools/CodeUsageMap.BinaryReferenceSampleProbe/bin/Debug/net9.0/CodeUsageMap.BinaryReferenceSampleProbe.dll
 
 run_step \
   "Build Edge Kind Probe" \

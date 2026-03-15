@@ -49,7 +49,11 @@ ToolWindow contract output:
 - `tools/CodeUsageMap.DiProbe` verifies DI registration analysis for generic and `typeof` registrations on macOS
 - `tools/CodeUsageMap.NodeAssessmentProbe` verifies shared impact summary and change-risk scoring on macOS
 - `samples/RepresentativeSample` is a reusable cross-project validation solution that contains interface dispatch, DI registration, event flow, override, and test-project references
+- `samples/MixedDependencySample` is a reusable multi-project validation solution for fan-in / fan-out dependency checks
+- `samples/BinaryReferenceSample` is a reusable same-solution binary-reference validation solution that exercises metadata-to-source normalization on macOS
 - `tools/CodeUsageMap.RepresentativeSampleProbe` validates the representative sample solution with the real analyzer on macOS
+- `tools/CodeUsageMap.MixedDependencyProbe` validates a denser multi-project dependency sample on macOS
+- `tools/CodeUsageMap.BinaryReferenceSampleProbe` validates actual-solution same-solution DLL normalization on macOS
 - `tools/CodeUsageMap.EdgeKindProbe` validates the union of analyzer-emitted edge kinds on macOS
 - `tools/CodeUsageMap.PresentationConsistencyProbe` validates analyzer-to-presentation consistency for shared UsageMap and graph canvas contracts on macOS
 - the selected-node details pane now also shows an impact summary with referencing-project count, implementation count, override count, and test-reference presence

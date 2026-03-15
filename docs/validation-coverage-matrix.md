@@ -30,7 +30,7 @@
 | JSON / ViewModel JSON / DGML 出力 | 検証済み | 望ましい | `SerializationProbe`, `SnapshotRegressionProbe` |
 | output envelope / partialResult / diagnostics | 検証済み | 望ましい | `SerializationProbe` |
 | analyzer 出力と shared presentation 契約の整合 | 検証済み | 望ましい | `PresentationConsistencyProbe` |
-| same-solution DLL source 正規化 | 検証済み | 必須 | `MetadataNormalizationProbe` で Mac は確認済み。Windows 実機未確認 |
+| same-solution DLL source 正規化 | 検証済み | 必須 | `MetadataNormalizationProbe` と `BinaryReferenceSampleProbe` で synthetic / actual solution の両方を Mac で確認済み。Windows 実機未確認 |
 | DI 解決関係の可視化 | 一部検証 | 必須 | `DiProbe` と representative sample probe で core 側確認済み。VSIX UI 未確認 |
 | 影響範囲サマリ | 検証済み | 望ましい | `NodeAssessmentProbe` で shared ロジック確認済み。VSIX UI 未確認 |
 | 変更リスク指標 | 検証済み | 望ましい | `NodeAssessmentProbe` で shared ロジック確認済み。VSIX UI 未確認 |
@@ -67,7 +67,11 @@
 ### 4.4 representative sample
 
 - [RepresentativeSample.sln](/Users/funabashiyuuki/programming/CodeUsageMap/samples/RepresentativeSample/RepresentativeSample.sln)
+- [MixedDependencySample.sln](/Users/funabashiyuuki/programming/CodeUsageMap/samples/MixedDependencySample/MixedDependencySample.sln)
+- [BinaryReferenceSample.sln](/Users/funabashiyuuki/programming/CodeUsageMap/samples/BinaryReferenceSample/BinaryReferenceSample.sln)
 - [CodeUsageMap.RepresentativeSampleProbe](/Users/funabashiyuuki/programming/CodeUsageMap/tools/CodeUsageMap.RepresentativeSampleProbe/Program.cs)
+- [CodeUsageMap.MixedDependencyProbe](/Users/funabashiyuuki/programming/CodeUsageMap/tools/CodeUsageMap.MixedDependencyProbe/Program.cs)
+- [CodeUsageMap.BinaryReferenceSampleProbe](/Users/funabashiyuuki/programming/CodeUsageMap/tools/CodeUsageMap.BinaryReferenceSampleProbe/Program.cs)
 - [CodeUsageMap.EdgeKindProbe](/Users/funabashiyuuki/programming/CodeUsageMap/tools/CodeUsageMap.EdgeKindProbe/Program.cs)
 
 ## 5. Mac で未網羅の項目

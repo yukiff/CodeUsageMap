@@ -37,7 +37,7 @@ public sealed class AdhocWorkspaceLoader : IWorkspaceLoader
                 outputFilePath: null,
                 compilationOptions: new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary),
                 parseOptions: new CSharpParseOptions(LanguageVersion.Preview),
-                metadataReferences: GetMetadataReferences());
+                metadataReferences: GetMetadataReferences(projectPath));
 
             solution = solution.AddProject(projectInfo);
             projectIds[projectPath] = projectId;
@@ -141,7 +141,7 @@ public sealed class AdhocWorkspaceLoader : IWorkspaceLoader
             .Where(static path => !path.Contains($"{Path.DirectorySeparatorChar}obj{Path.DirectorySeparatorChar}", StringComparison.OrdinalIgnoreCase));
     }
 
-    private static ImmutableArray<MetadataReference> GetMetadataReferences()
+    private static ImmutableArray<MetadataReference> GetMetadataReferences(string projectPath)
     {
         var references = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
@@ -159,9 +159,35 @@ public sealed class AdhocWorkspaceLoader : IWorkspaceLoader
             references.Add(path);
         }
 
+        foreach (var path in ParseMetadataReferencePaths(projectPath))
+        {
+            references.Add(path);
+        }
+
         return references
             .Select(static path => (MetadataReference)MetadataReference.CreateFromFile(path))
             .ToImmutableArray();
+    }
+
+    private static IEnumerable<string> ParseMetadataReferencePaths(string projectPath)
+    {
+        var projectDirectory = Path.GetDirectoryName(projectPath) ?? string.Empty;
+        var document = XDocument.Load(projectPath);
+
+        foreach (var element in document.Descendants().Where(static item => item.Name.LocalName == "Reference"))
+        {
+            var hintPath = element.Elements().FirstOrDefault(static item => item.Name.LocalName == "HintPath")?.Value;
+            if (string.IsNullOrWhiteSpace(hintPath))
+            {
+                continue;
+            }
+
+            var fullPath = Path.GetFullPath(Path.Combine(projectDirectory, NormalizeRelativePath(hintPath)));
+            if (File.Exists(fullPath))
+            {
+                yield return fullPath;
+            }
+        }
     }
 
     private static IEnumerable<string> GetRoslynReferencePaths()
