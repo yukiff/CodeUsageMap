@@ -1,0 +1,79 @@
+{
+  "graph": {
+    "edges": [
+      {
+        "confidence": 1,
+        "kind": 0,
+        "label": "DirectCall",
+        "properties": {
+          "assemblyIdentity": "CodeUsageMap.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "normalizationStrategy": "documentationCommentId",
+          "normalizedFromMetadata": "true",
+          "referenceText": "Run",
+          "symbolOrigin": "source"
+        },
+        "sourceId": "root-node",
+        "targetId": "target-node"
+      }
+    ],
+    "nodes": [
+      {
+        "displayName": "Root.Method()",
+        "filePath": "/tmp/Root.cs",
+        "id": "root-node",
+        "kind": 3,
+        "lineNumber": 12,
+        "projectName": "CodeUsageMap.Core",
+        "properties": {
+          "assemblyIdentity": "CodeUsageMap.Core, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "normalizedFromMetadata": "false",
+          "symbolOrigin": "source"
+        },
+        "symbolKey": "M:Root.Method"
+      },
+      {
+        "displayName": "Dependency.Run()",
+        "filePath": "/tmp/Dependency.cs",
+        "id": "target-node",
+        "kind": 3,
+        "lineNumber": 24,
+        "projectName": "CodeUsageMap.Contracts",
+        "properties": {
+          "assemblyIdentity": "CodeUsageMap.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "normalizationStrategy": "documentationCommentId",
+          "normalizedFromMetadata": "true",
+          "symbolOrigin": "source"
+        },
+        "symbolKey": "M:Dependency.Run"
+      }
+    ]
+  },
+  "metadata": {
+    "analysisOptions": {
+      "depth": 2,
+      "excludeGenerated": true,
+      "excludeTests": false,
+      "solutionPath": "/tmp/CodeUsageMap.sln",
+      "symbolIndex": null,
+      "symbolName": "Root.Method"
+    },
+    "diagnostics": [
+      {
+        "code": "unresolved_binary_reference",
+        "confidence": 2,
+        "message": "Synthetic unresolved binary reference for snapshot regression."
+      }
+    ],
+    "generatedAt": "\u003Cgenerated-at\u003E",
+    "partialResult": true,
+    "schemaVersion": "1.0",
+    "symbolResolution": {
+      "candidates": [],
+      "requestedSymbolIndex": null,
+      "requestedSymbolName": "Root.Method",
+      "selectedSymbolIndex": null,
+      "status": 1
+    },
+    "workspaceLoader": "adhoc"
+  }
+}

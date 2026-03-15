@@ -1,0 +1,76 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\CodeUsageMap.Contracts\CodeUsageMap.Contracts.csproj" />
+    <ProjectReference Include="..\..\src\CodeUsageMap.Core\CodeUsageMap.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.Build">
+      <HintPath>$(DotNetSdkDir)Microsoft.Build.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Build.Framework">
+      <HintPath>$(DotNetSdkDir)Microsoft.Build.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Build.Utilities.Core">
+      <HintPath>$(DotNetSdkDir)Microsoft.Build.Utilities.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Build.Tasks.Core">
+      <HintPath>$(DotNetSdkDir)Microsoft.Build.Tasks.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Build.Locator">
+      <HintPath>$(DotNetSdkToolDir)Microsoft.Build.Locator.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis">
+      <HintPath>$(DotNetSdkToolDir)Microsoft.CodeAnalysis.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp">
+      <HintPath>$(DotNetSdkToolDir)Microsoft.CodeAnalysis.CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.Workspaces">
+      <HintPath>$(DotNetSdkToolDir)Microsoft.CodeAnalysis.Workspaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp.Workspaces">
+      <HintPath>$(DotNetSdkToolDir)Microsoft.CodeAnalysis.CSharp.Workspaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild">
+      <HintPath>$(DotNetSdkToolDir)Microsoft.CodeAnalysis.Workspaces.MSBuild.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.AttributedModel">
+      <HintPath>$(DotNetSdkToolDir)System.Composition.AttributedModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Convention">
+      <HintPath>$(DotNetSdkToolDir)System.Composition.Convention.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Hosting">
+      <HintPath>$(DotNetSdkToolDir)System.Composition.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Runtime">
+      <HintPath>$(DotNetSdkToolDir)System.Composition.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.TypedParts">
+      <HintPath>$(DotNetSdkToolDir)System.Composition.TypedParts.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UseAppHost>false</UseAppHost>
+  </PropertyGroup>
+
+  <Target Name="CopyRoslynBuildHost" AfterTargets="Build">
+    <ItemGroup>
+      <BuildHostNetCoreFiles Include="$(RoslynBuildHostDir)**" />
+    </ItemGroup>
+
+    <Copy
+      SourceFiles="@(BuildHostNetCoreFiles)"
+      DestinationFiles="@(BuildHostNetCoreFiles->'$(OutDir)BuildHost-netcore/%(RecursiveDir)%(Filename)%(Extension)')"
+      SkipUnchangedFiles="true"
+      Condition="Exists('$(RoslynBuildHostDir)')" />
+  </Target>
+
+</Project>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable">
+  <Extern href="stdidcmd.h" />
+  <Extern href="vsshlids.h" />
+
+  <Commands package="guidCodeUsageMapPackage">
+    <Groups>
+      <Group guid="guidCodeUsageMapPackageCmdSet" id="CodeUsageMapGroup" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN" />
+      </Group>
+    </Groups>
+
+    <Buttons>
+      <Button guid="guidCodeUsageMapPackageCmdSet" id="ShowUsageMapCommandId" priority="0x0100" type="Button">
+        <Parent guid="guidCodeUsageMapPackageCmdSet" id="CodeUsageMapGroup" />
+        <Strings>
+          <ButtonText>Show Usage Map</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
+  </Commands>
+
+  <Symbols>
+    <GuidSymbol name="guidCodeUsageMapPackage" value="{7A65875A-0D9A-4D74-97F1-E3225D6387D7}" />
+    <GuidSymbol name="guidCodeUsageMapPackageCmdSet" value="{9D0CF7F9-C8D5-4C1A-9D6D-6801F8036D18}">
+      <IDSymbol name="CodeUsageMapGroup" value="0x1020" />
+      <IDSymbol name="ShowUsageMapCommandId" value="0x0100" />
+    </GuidSymbol>
+  </Symbols>
+</CommandTable>

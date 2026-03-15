@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <GeneratePkgDefFile>true</GeneratePkgDefFile>
+    <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
+    <IncludeDebugSymbolsInVSIXContainer>false</IncludeDebugSymbolsInVSIXContainer>
+    <CopyBuildOutputToOutputDirectory>true</CopyBuildOutputToOutputDirectory>
+    <CopyOutputSymbolsToOutputDirectory>false</CopyOutputSymbolsToOutputDirectory>
+    <NeutralLanguage>en-US</NeutralLanguage>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CodeUsageMap.Contracts\CodeUsageMap.Contracts.csproj" />
+    <ProjectReference Include="..\CodeUsageMap.Core\CodeUsageMap.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.SDK" Version="17.10.40174" ExcludeAssets="runtime" />
+    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.10.2181" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.VisualStudio.Threading" Version="17.10.48" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="source.extension.vsixmanifest">
+      <SubType>Designer</SubType>
+    </None>
+    <VSCTCompile Include="CodeUsageMap.vsct" />
+  </ItemGroup>
+</Project>

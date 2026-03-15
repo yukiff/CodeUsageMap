@@ -1,0 +1,221 @@
+{
+  "metadata": {
+    "analysisOptions": {
+      "depth": 2,
+      "excludeGenerated": true,
+      "excludeTests": false,
+      "solutionPath": "/tmp/CodeUsageMap.sln",
+      "symbolIndex": null,
+      "symbolName": "Root.Method"
+    },
+    "diagnostics": [
+      {
+        "code": "unresolved_binary_reference",
+        "confidence": 2,
+        "message": "Synthetic unresolved binary reference for snapshot regression."
+      }
+    ],
+    "generatedAt": "\u003Cgenerated-at\u003E",
+    "partialResult": true,
+    "schemaVersion": "1.0",
+    "symbolResolution": {
+      "candidates": [],
+      "requestedSymbolIndex": null,
+      "requestedSymbolName": "Root.Method",
+      "selectedSymbolIndex": null,
+      "status": 1
+    },
+    "workspaceLoader": "adhoc"
+  },
+  "viewModel": {
+    "diagnostics": [
+      {
+        "code": "unresolved_binary_reference",
+        "confidence": 2,
+        "message": "Synthetic unresolved binary reference for snapshot regression."
+      }
+    ],
+    "edges": [
+      {
+        "confidence": 1,
+        "details": [
+          {
+            "key": "assemblyIdentity",
+            "value": "CodeUsageMap.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+          },
+          {
+            "key": "normalizationStrategy",
+            "value": "documentationCommentId"
+          },
+          {
+            "key": "normalizedFromMetadata",
+            "value": "true"
+          },
+          {
+            "key": "referenceText",
+            "value": "Run"
+          },
+          {
+            "key": "symbolOrigin",
+            "value": "source"
+          }
+        ],
+        "id": "root-node|target-node|DirectCall|DirectCall",
+        "kind": 0,
+        "label": "DirectCall",
+        "sourceId": "root-node",
+        "targetId": "target-node"
+      }
+    ],
+    "incomingRelations": [],
+    "nodes": [
+      {
+        "accessibility": "",
+        "details": [
+          {
+            "key": "assemblyIdentity",
+            "value": "CodeUsageMap.Core, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+          },
+          {
+            "key": "normalizedFromMetadata",
+            "value": "false"
+          },
+          {
+            "key": "symbolOrigin",
+            "value": "source"
+          }
+        ],
+        "displayName": "Root.Method()",
+        "externalCategory": "",
+        "filePath": "/tmp/Root.cs",
+        "id": "root-node",
+        "isExternal": false,
+        "isRoot": true,
+        "kind": 3,
+        "lineNumber": 12,
+        "namespaceName": "",
+        "projectName": "CodeUsageMap.Core",
+        "symbolKey": "M:Root.Method"
+      },
+      {
+        "accessibility": "",
+        "details": [
+          {
+            "key": "assemblyIdentity",
+            "value": "CodeUsageMap.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+          },
+          {
+            "key": "normalizationStrategy",
+            "value": "documentationCommentId"
+          },
+          {
+            "key": "normalizedFromMetadata",
+            "value": "true"
+          },
+          {
+            "key": "symbolOrigin",
+            "value": "source"
+          }
+        ],
+        "displayName": "Dependency.Run()",
+        "externalCategory": "",
+        "filePath": "/tmp/Dependency.cs",
+        "id": "target-node",
+        "isExternal": false,
+        "isRoot": false,
+        "kind": 3,
+        "lineNumber": 24,
+        "namespaceName": "",
+        "projectName": "CodeUsageMap.Contracts",
+        "symbolKey": "M:Dependency.Run"
+      }
+    ],
+    "outgoingRelations": [
+      {
+        "accessibility": "",
+        "confidence": 1,
+        "details": [
+          {
+            "key": "assemblyIdentity",
+            "value": "CodeUsageMap.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+          },
+          {
+            "key": "normalizationStrategy",
+            "value": "documentationCommentId"
+          },
+          {
+            "key": "normalizedFromMetadata",
+            "value": "true"
+          },
+          {
+            "key": "referenceText",
+            "value": "Run"
+          },
+          {
+            "key": "symbolOrigin",
+            "value": "source"
+          }
+        ],
+        "direction": 1,
+        "edgeId": "root-node|target-node|DirectCall|DirectCall",
+        "edgeKind": 0,
+        "externalCategory": "",
+        "isExternal": false,
+        "label": "DirectCall",
+        "namespaceName": "",
+        "projectName": "CodeUsageMap.Core",
+        "sourceDisplayName": "Root.Method()",
+        "sourceKind": 3,
+        "sourceNodeId": "root-node",
+        "targetDisplayName": "Dependency.Run()",
+        "targetKind": 3,
+        "targetNodeId": "target-node"
+      }
+    ],
+    "relatedRelations": [],
+    "rootNode": {
+      "accessibility": "",
+      "details": [
+        {
+          "key": "assemblyIdentity",
+          "value": "CodeUsageMap.Core, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+        },
+        {
+          "key": "normalizedFromMetadata",
+          "value": "false"
+        },
+        {
+          "key": "symbolOrigin",
+          "value": "source"
+        }
+      ],
+      "displayName": "Root.Method()",
+      "externalCategory": "",
+      "filePath": "/tmp/Root.cs",
+      "id": "root-node",
+      "isExternal": false,
+      "isRoot": true,
+      "kind": 3,
+      "lineNumber": 12,
+      "namespaceName": "",
+      "projectName": "CodeUsageMap.Core",
+      "symbolKey": "M:Root.Method"
+    },
+    "summary": {
+      "diagnosticCount": 1,
+      "edgeCount": 1,
+      "incomingCount": 0,
+      "nodeCount": 2,
+      "outgoingCount": 1,
+      "relatedCount": 0
+    },
+    "symbolResolution": {
+      "candidates": [],
+      "requestedSymbolIndex": null,
+      "requestedSymbolName": "Root.Method",
+      "selectedSymbolIndex": null,
+      "status": 1
+    },
+    "title": "Root.Method()"
+  }
+}

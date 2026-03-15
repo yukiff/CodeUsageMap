@@ -1,0 +1,36 @@
+<DirectedGraph GraphDirection="LeftToRight" SchemaVersion="1.0" WorkspaceLoader="adhoc" GeneratedAt="&lt;generated-at&gt;" PartialResult="true" Depth="2" SymbolIndex="" ExcludeTests="false" ExcludeGenerated="true" SymbolName="Root.Method" SymbolResolutionStatus="Resolved" SymbolCandidateCount="0" SolutionPath="/tmp/CodeUsageMap.sln" DiagnosticCount="1" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="root-node" Label="Root.Method()" Category="Method" symbolOrigin="source" normalizedFromMetadata="false" assemblyIdentity="CodeUsageMap.Core, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <Node Id="target-node" Label="Dependency.Run()" Category="Method" symbolOrigin="source" normalizedFromMetadata="true" normalizationStrategy="documentationCommentId" assemblyIdentity="CodeUsageMap.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" />
+  </Nodes>
+  <Links>
+    <Link Source="root-node" Target="target-node" Category="DirectCall" Label="DirectCall" Confidence="1" symbolOrigin="source" normalizedFromMetadata="true" normalizationStrategy="documentationCommentId" assemblyIdentity="CodeUsageMap.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" referenceText="Run" />
+  </Links>
+  <Categories>
+    <Category Id="Unknown" />
+    <Category Id="Class" />
+    <Category Id="Interface" />
+    <Category Id="Method" />
+    <Category Id="Property" />
+    <Category Id="Event" />
+    <Category Id="AnonymousFunction" />
+    <Category Id="Project" />
+    <Category Id="File" />
+    <Category Id="DiRegistration" />
+    <Category Id="DirectCall" />
+    <Category Id="InterfaceDispatch" />
+    <Category Id="DiResolvedCall" />
+    <Category Id="Reference" />
+    <Category Id="Implements" />
+    <Category Id="Overrides" />
+    <Category Id="InjectedByDi" />
+    <Category Id="InstantiatedBy" />
+    <Category Id="ContainsSubscription" />
+    <Category Id="EventSubscription" />
+    <Category Id="EventUnsubscription" />
+    <Category Id="EventHandlerTarget" />
+    <Category Id="EventRaise" />
+    <Category Id="EventDispatchEstimated" />
+    <Category Id="UnknownDynamicDispatch" />
+  </Categories>
+</DirectedGraph>

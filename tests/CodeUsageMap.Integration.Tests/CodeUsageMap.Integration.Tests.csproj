@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\CodeUsageMap.Contracts\CodeUsageMap.Contracts.csproj" />
+    <ProjectReference Include="..\..\src\CodeUsageMap.Core\CodeUsageMap.Core.csproj" />
+    <ProjectReference Include="..\..\src\CodeUsageMap.Cli\CodeUsageMap.Cli.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>
