@@ -9,7 +9,6 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.FindSymbols;
 using Microsoft.CodeAnalysis.Text;
 using Microsoft.VisualStudio.ComponentModelHost;
-using Microsoft.VisualStudio.LanguageServices;
 using Microsoft.VisualStudio.Shell;
 
 namespace CodeUsageMap.Vsix.Services
@@ -134,7 +133,7 @@ internal sealed class VisualStudioSymbolContextService
         return results;
     }
 
-    private async Task<(string SolutionPath, VisualStudioWorkspace Workspace, Document? ActiveDocument, TextSelection? Selection)?> TryGetWorkspaceContextAsync(
+    private async Task<(string SolutionPath, Workspace Workspace, EnvDTE.Document ActiveDocument, TextSelection Selection)?> TryGetWorkspaceContextAsync(
         CancellationToken cancellationToken)
     {
         await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
@@ -146,13 +145,20 @@ internal sealed class VisualStudioSymbolContextService
         }
 
         var componentModel = await _package.GetServiceAsync(typeof(SComponentModel)) as IComponentModel;
-        var workspace = componentModel?.GetService<VisualStudioWorkspace>();
+        var workspace = componentModel?.GetService<Workspace>();
         if (workspace is null)
         {
             return null;
         }
 
-        return (solutionPath, workspace, dte.ActiveDocument, dte.ActiveDocument?.Selection as TextSelection);
+        var activeDocument = dte.ActiveDocument;
+        var selection = activeDocument?.Selection as TextSelection;
+        if (activeDocument is null || selection is null)
+        {
+            return null;
+        }
+
+        return (solutionPath, workspace, activeDocument, selection);
     }
 
     private static VisualStudioSymbolContext? CreateContextFromSymbol(ISymbol symbol, string solutionPath, string fallbackProjectName)

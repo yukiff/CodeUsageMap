@@ -1,3 +1,4 @@
+using System;
 using CodeUsageMap.Contracts.Analysis;
 using CodeUsageMap.Core.Presentation;
 using CodeUsageMap.Vsix.Services;
@@ -32,7 +33,7 @@ public sealed class UsageMapToolWindow : ToolWindowPane
         };
     }
 
-    public void Load(AnalyzeRequest request, AnalysisResult result, PresentationUsageMapViewModel model)
+    internal void Load(AnalyzeRequest request, AnalysisResult result, PresentationUsageMapViewModel model)
     {
         var canvasModel = _graphCanvasViewModelBuilder.Build(result);
         _exportSnapshot = new UsageMapExportSnapshot
@@ -44,50 +45,50 @@ public sealed class UsageMapToolWindow : ToolWindowPane
         _viewModel.Load(model, canvasModel);
     }
 
-    public void BeginAnalysis(VisualStudioSymbolContext context, string statusMessage, CancellationTokenSource cancellation)
+    internal void BeginAnalysis(VisualStudioSymbolContext context, string statusMessage, CancellationTokenSource cancellation)
     {
         _exportSnapshot = null;
         _viewModel.BeginAnalysis(context, statusMessage, cancellation);
     }
 
-    public void ReportStatus(string statusMessage)
+    internal void ReportStatus(string statusMessage)
     {
         _viewModel.ReportStatus(statusMessage);
     }
 
-    public void MarkCanceled()
+    internal void MarkCanceled()
     {
         _viewModel.MarkCanceled();
     }
 
-    public void ShowError(string message)
+    internal void ShowError(string message)
     {
         _viewModel.ShowError(message);
     }
 
-    public AnalyzeOptions CreateAnalyzeOptions()
+    internal AnalyzeOptions CreateAnalyzeOptions()
     {
         return _viewModel.CreateAnalyzeOptions();
     }
 
-    public void SetRefreshHandler(Func<AnalyzeOptions, Task> refreshHandler)
+    internal void SetRefreshHandler(Func<AnalyzeOptions, Task> refreshHandler)
     {
         _viewModel.SetRefreshHandler(refreshHandler);
     }
 
-    public void SetRootSearchHandlers(
+    internal void SetRootSearchHandlers(
         Func<string, CancellationToken, Task<IReadOnlyList<UsageMapRootSearchResultItemViewModel>>> rootSearchHandler,
         Func<UsageMapRootSearchResultItemViewModel, Task> applyRootSearchResultHandler)
     {
         _viewModel.SetRootSearchHandlers(rootSearchHandler, applyRootSearchResultHandler);
     }
 
-    public void SetFollowCaretHandler(Func<bool, Task> followCaretHandler)
+    internal void SetFollowCaretHandler(Func<bool, Task> followCaretHandler)
     {
         _viewModel.SetFollowCaretHandler(followCaretHandler);
     }
 
-    public void SetRerootHandler(Func<UsageMapCanvasNodeItemViewModel, Task> rerootHandler)
+    internal void SetRerootHandler(Func<UsageMapCanvasNodeItemViewModel, Task> rerootHandler)
     {
         _viewModel.SetRerootHandler(rerootHandler);
     }

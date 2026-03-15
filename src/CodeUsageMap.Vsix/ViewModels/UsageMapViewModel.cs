@@ -2073,7 +2073,7 @@ internal sealed class UsageMapViewModel : ViewModelBase
     private static double ComputeCanvasPriority(
         UsageMapCanvasNodeItemViewModel node,
         string? selectedNodeId,
-        IReadOnlySet<string> directRootNeighbors,
+        ISet<string> directRootNeighbors,
         IReadOnlyDictionary<string, int> degreeMap)
     {
         var score = 0d;
