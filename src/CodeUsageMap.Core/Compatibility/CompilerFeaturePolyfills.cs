@@ -1,52 +1,63 @@
 #if NET472
-namespace System.Runtime.CompilerServices;
+using System;
 
-internal static class IsExternalInit
+namespace System.Runtime.CompilerServices
 {
-}
-
-namespace System.Diagnostics.CodeAnalysis;
-
-[AttributeUsage(AttributeTargets.All, Inherited = false)]
-internal sealed class SetsRequiredMembersAttribute : Attribute
-{
-}
-
-[AttributeUsage(AttributeTargets.All, Inherited = false)]
-internal sealed class MemberNotNullAttribute : Attribute
-{
-    public MemberNotNullAttribute(params string[] members)
+    public static class IsExternalInit
     {
-        Members = members;
     }
 
-    public string[] Members { get; }
-}
-
-namespace System.Runtime.CompilerServices;
-
-[AttributeUsage(
-    AttributeTargets.Class |
-    AttributeTargets.Struct |
-    AttributeTargets.Field |
-    AttributeTargets.Property |
-    AttributeTargets.Method,
-    AllowMultiple = true,
-    Inherited = false)]
-internal sealed class CompilerFeatureRequiredAttribute : Attribute
-{
-    public CompilerFeatureRequiredAttribute(string featureName)
+    [AttributeUsage(
+        AttributeTargets.Class |
+        AttributeTargets.Struct |
+        AttributeTargets.Field |
+        AttributeTargets.Property |
+        AttributeTargets.Method,
+        AllowMultiple = true,
+        Inherited = false)]
+    public sealed class CompilerFeatureRequiredAttribute : Attribute
     {
-        FeatureName = featureName;
+        public const string RefStructs = nameof(RefStructs);
+        public const string RequiredMembers = nameof(RequiredMembers);
+
+        public CompilerFeatureRequiredAttribute(string featureName)
+        {
+            FeatureName = featureName;
+        }
+
+        public string FeatureName { get; }
+
+        public bool IsOptional { get; set; }
     }
 
-    public string FeatureName { get; }
-
-    public bool IsOptional { get; init; }
+    [AttributeUsage(
+        AttributeTargets.Class |
+        AttributeTargets.Struct |
+        AttributeTargets.Field |
+        AttributeTargets.Property,
+        AllowMultiple = false,
+        Inherited = false)]
+    public sealed class RequiredMemberAttribute : Attribute
+    {
+    }
 }
 
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Field | AttributeTargets.Property, Inherited = false)]
-internal sealed class RequiredMemberAttribute : Attribute
+namespace System.Diagnostics.CodeAnalysis
 {
+    [AttributeUsage(AttributeTargets.Constructor, Inherited = false)]
+    public sealed class SetsRequiredMembersAttribute : Attribute
+    {
+    }
+
+    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property, Inherited = false, AllowMultiple = true)]
+    public sealed class MemberNotNullAttribute : Attribute
+    {
+        public MemberNotNullAttribute(params string[] members)
+        {
+            Members = members;
+        }
+
+        public string[] Members { get; }
+    }
 }
 #endif
