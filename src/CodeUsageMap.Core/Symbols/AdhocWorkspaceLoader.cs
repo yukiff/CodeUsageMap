@@ -4,7 +4,8 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Text;
 
-namespace CodeUsageMap.Core.Symbols;
+namespace CodeUsageMap.Core.Symbols
+{
 
 public sealed class AdhocWorkspaceLoader : IWorkspaceLoader
 {
@@ -60,7 +61,8 @@ public sealed class AdhocWorkspaceLoader : IWorkspaceLoader
             {
                 cancellationToken.ThrowIfCancellationRequested();
 
-                var sourceText = await File.ReadAllTextAsync(sourceFile, cancellationToken);
+                cancellationToken.ThrowIfCancellationRequested();
+                var sourceText = File.ReadAllText(sourceFile);
                 solution = solution.AddDocument(
                     DocumentId.CreateNewId(projectId, debugName: sourceFile),
                     Path.GetFileName(sourceFile),
@@ -103,9 +105,9 @@ public sealed class AdhocWorkspaceLoader : IWorkspaceLoader
                 continue;
             }
 
-            var relativePath = line[(startQuote + 1)..endQuote];
+            var relativePath = line.Substring(startQuote + 1, endQuote - startQuote - 1);
             var fullPath = Path.GetFullPath(Path.Combine(solutionDirectory, NormalizeRelativePath(relativePath)));
-            if (!result.Contains(fullPath, StringComparer.OrdinalIgnoreCase))
+            if (!result.Any(existingPath => string.Equals(existingPath, fullPath, StringComparison.OrdinalIgnoreCase)))
             {
                 result.Add(fullPath);
             }
@@ -137,8 +139,8 @@ public sealed class AdhocWorkspaceLoader : IWorkspaceLoader
 
         return Directory
             .EnumerateFiles(projectDirectory, "*.cs", SearchOption.AllDirectories)
-            .Where(static path => !path.Contains($"{Path.DirectorySeparatorChar}bin{Path.DirectorySeparatorChar}", StringComparison.OrdinalIgnoreCase))
-            .Where(static path => !path.Contains($"{Path.DirectorySeparatorChar}obj{Path.DirectorySeparatorChar}", StringComparison.OrdinalIgnoreCase));
+            .Where(static path => path.IndexOf($"{Path.DirectorySeparatorChar}bin{Path.DirectorySeparatorChar}", StringComparison.OrdinalIgnoreCase) < 0)
+            .Where(static path => path.IndexOf($"{Path.DirectorySeparatorChar}obj{Path.DirectorySeparatorChar}", StringComparison.OrdinalIgnoreCase) < 0);
     }
 
     private static ImmutableArray<MetadataReference> GetMetadataReferences(string projectPath)
@@ -148,7 +150,7 @@ public sealed class AdhocWorkspaceLoader : IWorkspaceLoader
         var trustedPlatformAssemblies = AppContext.GetData("TRUSTED_PLATFORM_ASSEMBLIES") as string;
         if (!string.IsNullOrWhiteSpace(trustedPlatformAssemblies))
         {
-            foreach (var path in trustedPlatformAssemblies.Split(Path.PathSeparator, StringSplitOptions.RemoveEmptyEntries))
+            foreach (var path in trustedPlatformAssemblies.Split(new[] { Path.PathSeparator }, StringSplitOptions.RemoveEmptyEntries))
             {
                 references.Add(path);
             }
@@ -215,4 +217,5 @@ public sealed class AdhocWorkspaceLoader : IWorkspaceLoader
             .Replace('\\', Path.DirectorySeparatorChar)
             .Replace('/', Path.DirectorySeparatorChar);
     }
+}
 }

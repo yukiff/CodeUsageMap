@@ -3,7 +3,8 @@ using CodeUsageMap.Core.Compatibility;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace CodeUsageMap.Core.References;
+namespace CodeUsageMap.Core.References
+{
 
 internal static class ReferenceClassifier
 {
@@ -49,4 +50,5 @@ internal static class ReferenceClassifier
 
         return EdgeKind.DirectCall;
     }
+}
 }

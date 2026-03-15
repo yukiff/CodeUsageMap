@@ -1,4 +1,5 @@
-namespace CodeUsageMap.Contracts.Analysis;
+namespace CodeUsageMap.Contracts.Analysis
+{
 
 public enum AnalysisProgressStage
 {
@@ -10,4 +11,5 @@ public enum AnalysisProgressStage
     CollectingEvents,
     ResolvingExpansion,
     Completed,
+}
 }

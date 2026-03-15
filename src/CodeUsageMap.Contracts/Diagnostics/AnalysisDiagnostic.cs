@@ -1,4 +1,5 @@
-namespace CodeUsageMap.Contracts.Diagnostics;
+namespace CodeUsageMap.Contracts.Diagnostics
+{
 
 public sealed class AnalysisDiagnostic
 {
@@ -7,4 +8,5 @@ public sealed class AnalysisDiagnostic
     public required string Message { get; init; }
 
     public AnalysisConfidence Confidence { get; init; } = AnalysisConfidence.Unknown;
+}
 }

@@ -1,4 +1,5 @@
-namespace CodeUsageMap.Contracts.Analysis;
+namespace CodeUsageMap.Contracts.Analysis
+{
 
 public sealed class AnalysisProgressUpdate
 {
@@ -11,4 +12,5 @@ public sealed class AnalysisProgressUpdate
     public int? Depth { get; init; }
 
     public int? ExpandedSymbols { get; init; }
+}
 }

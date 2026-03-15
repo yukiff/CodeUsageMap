@@ -1,4 +1,5 @@
-namespace CodeUsageMap.Contracts.Graph;
+namespace CodeUsageMap.Contracts.Graph
+{
 
 public enum NodeKind
 {
@@ -12,4 +13,5 @@ public enum NodeKind
     Project,
     File,
     DiRegistration,
+}
 }

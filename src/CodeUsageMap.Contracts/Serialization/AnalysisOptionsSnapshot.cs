@@ -1,4 +1,5 @@
-namespace CodeUsageMap.Contracts.Serialization;
+namespace CodeUsageMap.Contracts.Serialization
+{
 
 public sealed class AnalysisOptionsSnapshot
 {
@@ -13,4 +14,5 @@ public sealed class AnalysisOptionsSnapshot
     public bool ExcludeTests { get; init; }
 
     public bool ExcludeGenerated { get; init; }
+}
 }

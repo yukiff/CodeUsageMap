@@ -1,6 +1,7 @@
 using Microsoft.CodeAnalysis;
 
-namespace CodeUsageMap.Core.Symbols;
+namespace CodeUsageMap.Core.Symbols
+{
 
 public sealed class LoadedSolution
     : IDisposable
@@ -13,4 +14,5 @@ public sealed class LoadedSolution
     {
         Workspace.Dispose();
     }
+}
 }

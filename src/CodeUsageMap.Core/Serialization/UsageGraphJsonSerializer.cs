@@ -5,7 +5,8 @@ using CodeUsageMap.Contracts.Presentation;
 using CodeUsageMap.Contracts.Serialization;
 using CodeUsageMap.Core.Compatibility;
 
-namespace CodeUsageMap.Core.Serialization;
+namespace CodeUsageMap.Core.Serialization
+{
 
 public sealed class UsageGraphJsonSerializer : IUsageGraphSerializer
 {
@@ -87,12 +88,12 @@ public sealed class UsageGraphJsonSerializer : IUsageGraphSerializer
     private static bool IsPartialResult(AnalysisResult result)
     {
         return result.Diagnostics.Any(static diagnostic =>
-            diagnostic.Code.Contains("limit", StringComparison.OrdinalIgnoreCase) ||
-            diagnostic.Code.Contains("partial", StringComparison.OrdinalIgnoreCase) ||
-            diagnostic.Code.Contains("ambiguous", StringComparison.OrdinalIgnoreCase) ||
-            diagnostic.Code.Contains("invalid", StringComparison.OrdinalIgnoreCase) ||
-            diagnostic.Code.Contains("unresolved", StringComparison.OrdinalIgnoreCase) ||
-            diagnostic.Code.Contains("not_found", StringComparison.OrdinalIgnoreCase));
+            diagnostic.Code.IndexOf("limit", StringComparison.OrdinalIgnoreCase) >= 0 ||
+            diagnostic.Code.IndexOf("partial", StringComparison.OrdinalIgnoreCase) >= 0 ||
+            diagnostic.Code.IndexOf("ambiguous", StringComparison.OrdinalIgnoreCase) >= 0 ||
+            diagnostic.Code.IndexOf("invalid", StringComparison.OrdinalIgnoreCase) >= 0 ||
+            diagnostic.Code.IndexOf("unresolved", StringComparison.OrdinalIgnoreCase) >= 0 ||
+            diagnostic.Code.IndexOf("not_found", StringComparison.OrdinalIgnoreCase) >= 0);
     }
 
     private static string ResolveWorkspaceLoaderLabel(string? preferredLoader)
@@ -104,4 +105,5 @@ public sealed class UsageGraphJsonSerializer : IUsageGraphSerializer
 
         return PlatformSupport.IsWindows() ? "msbuild(default)" : "adhoc(default)";
     }
+}
 }

@@ -12,7 +12,8 @@ using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.LanguageServices;
 using Microsoft.VisualStudio.Shell;
 
-namespace CodeUsageMap.Vsix.Services;
+namespace CodeUsageMap.Vsix.Services
+{
 
 internal sealed class VisualStudioSymbolContextService
 {
@@ -92,13 +93,13 @@ internal sealed class VisualStudioSymbolContextService
     {
         if (string.IsNullOrWhiteSpace(query) || maxResults <= 0)
         {
-            return [];
+            return Array.Empty<VisualStudioSymbolContext>();
         }
 
         var workspaceContext = await TryGetWorkspaceContextAsync(cancellationToken);
         if (workspaceContext is null)
         {
-            return [];
+            return Array.Empty<VisualStudioSymbolContext>();
         }
 
         var (solutionPath, workspace, _, _) = workspaceContext.Value;
@@ -211,4 +212,5 @@ internal sealed class VisualStudioSymbolContextService
             _ => Contracts.Graph.NodeKind.Unknown,
         };
     }
+}
 }

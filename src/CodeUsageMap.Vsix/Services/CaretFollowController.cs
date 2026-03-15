@@ -4,7 +4,8 @@ using System.Threading.Tasks;
 using CodeUsageMap.Vsix.ToolWindows;
 using Microsoft.VisualStudio.Shell;
 
-namespace CodeUsageMap.Vsix.Services;
+namespace CodeUsageMap.Vsix.Services
+{
 
 internal sealed class CaretFollowController
 {
@@ -107,4 +108,5 @@ internal sealed class CaretFollowController
             return string.Equals(_lastSymbolKey, symbolKey, StringComparison.Ordinal);
         }
     }
+}
 }

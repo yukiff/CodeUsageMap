@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 using CodeUsageMap.Vsix.Commands;
 using Microsoft.VisualStudio.Shell;
 
-namespace CodeUsageMap.Vsix;
+namespace CodeUsageMap.Vsix
+{
 
 [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
 [InstalledProductRegistration("CodeUsageMap", "Usage map visualization for C# solutions", "0.1")]
@@ -21,4 +22,5 @@ public sealed class CodeUsageMapPackage : AsyncPackage
         await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
         await ShowUsageMapCommand.InitializeAsync(this);
     }
+}
 }

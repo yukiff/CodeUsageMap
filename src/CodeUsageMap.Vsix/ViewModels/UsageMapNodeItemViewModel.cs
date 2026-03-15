@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using CodeUsageMap.Contracts.Graph;
 
-namespace CodeUsageMap.Vsix.ViewModels;
+namespace CodeUsageMap.Vsix.ViewModels
+{
 
 internal sealed class UsageMapNodeItemViewModel
 {
@@ -29,5 +30,6 @@ internal sealed class UsageMapNodeItemViewModel
 
     public string ExternalCategory { get; init; } = string.Empty;
 
-    public IReadOnlyList<UsageMapDetailItemViewModel> Details { get; init; } = [];
+    public IReadOnlyList<UsageMapDetailItemViewModel> Details { get; init; } = System.Array.Empty<UsageMapDetailItemViewModel>();
+}
 }

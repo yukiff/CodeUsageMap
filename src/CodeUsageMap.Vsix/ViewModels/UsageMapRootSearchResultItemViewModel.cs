@@ -1,6 +1,7 @@
 using CodeUsageMap.Contracts.Graph;
 
-namespace CodeUsageMap.Vsix.ViewModels;
+namespace CodeUsageMap.Vsix.ViewModels
+{
 
 internal sealed class UsageMapRootSearchResultItemViewModel
 {
@@ -19,4 +20,5 @@ internal sealed class UsageMapRootSearchResultItemViewModel
     public string FilePath { get; init; } = string.Empty;
 
     public int? LineNumber { get; init; }
+}
 }

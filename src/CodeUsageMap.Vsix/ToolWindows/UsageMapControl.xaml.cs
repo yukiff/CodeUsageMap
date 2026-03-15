@@ -4,7 +4,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using CodeUsageMap.Vsix.ViewModels;
 
-namespace CodeUsageMap.Vsix.ToolWindows;
+namespace CodeUsageMap.Vsix.ToolWindows
+{
 
 public partial class UsageMapControl : UserControl
 {
@@ -220,4 +221,5 @@ public partial class UsageMapControl : UserControl
         GraphCanvasViewport.ReleaseMouseCapture();
         GraphCanvasViewport.Cursor = Cursors.Arrow;
     }
+}
 }

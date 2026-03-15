@@ -1,4 +1,5 @@
-namespace CodeUsageMap.Vsix.ViewModels;
+namespace CodeUsageMap.Vsix.ViewModels
+{
 
 internal sealed class UsageMapLegendItemViewModel
 {
@@ -7,4 +8,5 @@ internal sealed class UsageMapLegendItemViewModel
     public required string Label { get; init; }
 
     public string Description { get; init; } = string.Empty;
+}
 }

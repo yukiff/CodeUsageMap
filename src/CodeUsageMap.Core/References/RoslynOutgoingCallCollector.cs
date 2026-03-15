@@ -7,7 +7,8 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Operations;
 
-namespace CodeUsageMap.Core.References;
+namespace CodeUsageMap.Core.References
+{
 
 public sealed class RoslynOutgoingCallCollector
 {
@@ -196,4 +197,5 @@ public sealed class RoslynOutgoingCallCollector
             _ => NodeKind.Unknown,
         };
     }
+}
 }

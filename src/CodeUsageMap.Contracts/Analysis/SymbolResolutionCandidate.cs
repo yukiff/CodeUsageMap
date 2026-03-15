@@ -1,6 +1,7 @@
 using CodeUsageMap.Contracts.Graph;
 
-namespace CodeUsageMap.Contracts.Analysis;
+namespace CodeUsageMap.Contracts.Analysis
+{
 
 public sealed class SymbolResolutionCandidate
 {
@@ -19,4 +20,5 @@ public sealed class SymbolResolutionCandidate
     public int? LineNumber { get; init; }
 
     public string MatchKind { get; init; } = string.Empty;
+}
 }

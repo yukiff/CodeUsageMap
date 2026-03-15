@@ -1,4 +1,5 @@
-namespace CodeUsageMap.Core.Symbols;
+namespace CodeUsageMap.Core.Symbols
+{
 
 public sealed class RoslynWorkspaceLoader : IWorkspaceLoader
 {
@@ -22,4 +23,5 @@ public sealed class RoslynWorkspaceLoader : IWorkspaceLoader
     {
         return (_innerLoader ?? WorkspaceLoaderFactory.Create(preferredLoader)).LoadAsync(solutionPath, cancellationToken);
     }
+}
 }

@@ -1,7 +1,8 @@
 using CodeUsageMap.Contracts.Analysis;
 using Microsoft.CodeAnalysis;
 
-namespace CodeUsageMap.Core.Symbols;
+namespace CodeUsageMap.Core.Symbols
+{
 
 public sealed class SymbolResolutionMatch
 {
@@ -10,4 +11,5 @@ public sealed class SymbolResolutionMatch
     public required ISymbol RoslynSymbol { get; init; }
 
     public required SymbolResolutionInfo Resolution { get; init; }
+}
 }

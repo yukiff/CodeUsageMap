@@ -1,6 +1,7 @@
 using CodeUsageMap.Contracts.Graph;
 
-namespace CodeUsageMap.Vsix.Services;
+namespace CodeUsageMap.Vsix.Services
+{
 
 internal sealed class VisualStudioSymbolContext
 {
@@ -19,4 +20,5 @@ internal sealed class VisualStudioSymbolContext
     public string FilePath { get; init; } = string.Empty;
 
     public int? LineNumber { get; init; }
+}
 }

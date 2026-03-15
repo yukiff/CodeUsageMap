@@ -1,4 +1,5 @@
-namespace CodeUsageMap.Contracts.Analysis;
+namespace CodeUsageMap.Contracts.Analysis
+{
 
 public enum SymbolResolutionStatus
 {
@@ -7,4 +8,5 @@ public enum SymbolResolutionStatus
     NotFound,
     Ambiguous,
     InvalidSelection,
+}
 }

@@ -2,7 +2,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace CodeUsageMap.Vsix.ViewModels;
+namespace CodeUsageMap.Vsix.ViewModels
+{
 
 internal abstract class ViewModelBase : INotifyPropertyChanged
 {
@@ -24,4 +25,5 @@ internal abstract class ViewModelBase : INotifyPropertyChanged
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
+}
 }

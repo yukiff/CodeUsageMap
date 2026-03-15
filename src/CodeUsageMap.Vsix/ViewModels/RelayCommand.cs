@@ -1,7 +1,8 @@
 using System;
 using System.Windows.Input;
 
-namespace CodeUsageMap.Vsix.ViewModels;
+namespace CodeUsageMap.Vsix.ViewModels
+{
 
 internal sealed class RelayCommand : ICommand
 {
@@ -30,4 +31,5 @@ internal sealed class RelayCommand : ICommand
     {
         CanExecuteChanged?.Invoke(this, EventArgs.Empty);
     }
+}
 }

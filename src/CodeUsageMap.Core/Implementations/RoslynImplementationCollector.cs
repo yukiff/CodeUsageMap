@@ -4,7 +4,8 @@ using CodeUsageMap.Core.Analysis;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.FindSymbols;
 
-namespace CodeUsageMap.Core.Implementations;
+namespace CodeUsageMap.Core.Implementations
+{
 
 public sealed class RoslynImplementationCollector
 {
@@ -109,4 +110,5 @@ public sealed class RoslynImplementationCollector
             _ => NodeKind.Unknown,
         };
     }
+}
 }

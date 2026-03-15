@@ -11,7 +11,8 @@ using CodeUsageMap.Core.Symbols;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Operations;
 
-namespace CodeUsageMap.Core;
+namespace CodeUsageMap.Core
+{
 
 public sealed class CSharpUsageAnalyzer : IUsageAnalyzer
 {
@@ -1009,4 +1010,5 @@ public sealed class CSharpUsageAnalyzer : IUsageAnalyzer
             _ => 0.2d,
         };
     }
+}
 }

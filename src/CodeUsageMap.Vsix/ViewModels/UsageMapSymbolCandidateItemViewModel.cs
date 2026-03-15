@@ -1,6 +1,7 @@
 using CodeUsageMap.Contracts.Graph;
 
-namespace CodeUsageMap.Vsix.ViewModels;
+namespace CodeUsageMap.Vsix.ViewModels
+{
 
 internal sealed class UsageMapSymbolCandidateItemViewModel
 {
@@ -17,4 +18,5 @@ internal sealed class UsageMapSymbolCandidateItemViewModel
     public int? LineNumber { get; init; }
 
     public NodeKind Kind { get; init; } = NodeKind.Unknown;
+}
 }

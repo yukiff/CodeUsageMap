@@ -1,6 +1,7 @@
 using CodeUsageMap.Contracts.Graph;
 
-namespace CodeUsageMap.Contracts.Presentation;
+namespace CodeUsageMap.Contracts.Presentation
+{
 
 public sealed class UsageMapNodeViewModel
 {
@@ -28,5 +29,6 @@ public sealed class UsageMapNodeViewModel
 
     public string ExternalCategory { get; init; } = string.Empty;
 
-    public IReadOnlyList<UsageMapDetailItem> Details { get; init; } = [];
+    public IReadOnlyList<UsageMapDetailItem> Details { get; init; } = System.Array.Empty<UsageMapDetailItem>();
+}
 }

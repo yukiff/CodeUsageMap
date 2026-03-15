@@ -1,6 +1,7 @@
 using CodeUsageMap.Contracts.Graph;
 
-namespace CodeUsageMap.Contracts.Presentation;
+namespace CodeUsageMap.Contracts.Presentation
+{
 
 public sealed class UsageMapEdgeViewModel
 {
@@ -16,5 +17,6 @@ public sealed class UsageMapEdgeViewModel
 
     public double Confidence { get; init; } = 1.0d;
 
-    public IReadOnlyList<UsageMapDetailItem> Details { get; init; } = [];
+    public IReadOnlyList<UsageMapDetailItem> Details { get; init; } = System.Array.Empty<UsageMapDetailItem>();
+}
 }

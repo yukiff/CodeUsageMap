@@ -1,6 +1,7 @@
 using CodeUsageMap.Contracts.Graph;
 
-namespace CodeUsageMap.Contracts.Presentation;
+namespace CodeUsageMap.Contracts.Presentation
+{
 
 public sealed class CanvasEdgeViewModel
 {
@@ -20,5 +21,6 @@ public sealed class CanvasEdgeViewModel
 
     public CanvasNodeLane Lane { get; init; } = CanvasNodeLane.Related;
 
-    public IReadOnlyList<UsageMapDetailItem> Details { get; init; } = [];
+    public IReadOnlyList<UsageMapDetailItem> Details { get; init; } = System.Array.Empty<UsageMapDetailItem>();
+}
 }

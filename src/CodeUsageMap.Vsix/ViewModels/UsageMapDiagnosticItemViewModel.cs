@@ -1,6 +1,7 @@
 using CodeUsageMap.Contracts.Diagnostics;
 
-namespace CodeUsageMap.Vsix.ViewModels;
+namespace CodeUsageMap.Vsix.ViewModels
+{
 
 internal sealed class UsageMapDiagnosticItemViewModel
 {
@@ -9,4 +10,5 @@ internal sealed class UsageMapDiagnosticItemViewModel
     public string Message { get; init; } = string.Empty;
 
     public AnalysisConfidence Confidence { get; init; } = AnalysisConfidence.Unknown;
+}
 }

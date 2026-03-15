@@ -1,8 +1,12 @@
-namespace CodeUsageMap.Contracts.Graph;
+using System.Collections.Generic;
+
+namespace CodeUsageMap.Contracts.Graph
+{
 
 public sealed class UsageGraph
 {
-    public List<GraphNode> Nodes { get; } = [];
+    public List<GraphNode> Nodes { get; } = new List<GraphNode>();
 
-    public List<GraphEdge> Edges { get; } = [];
+    public List<GraphEdge> Edges { get; } = new List<GraphEdge>();
+}
 }

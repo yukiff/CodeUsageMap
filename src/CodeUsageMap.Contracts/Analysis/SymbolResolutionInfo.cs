@@ -1,4 +1,5 @@
-namespace CodeUsageMap.Contracts.Analysis;
+namespace CodeUsageMap.Contracts.Analysis
+{
 
 public sealed class SymbolResolutionInfo
 {
@@ -10,5 +11,6 @@ public sealed class SymbolResolutionInfo
 
     public int? SelectedSymbolIndex { get; init; }
 
-    public IReadOnlyList<SymbolResolutionCandidate> Candidates { get; init; } = [];
+    public IReadOnlyList<SymbolResolutionCandidate> Candidates { get; init; } = System.Array.Empty<SymbolResolutionCandidate>();
+}
 }

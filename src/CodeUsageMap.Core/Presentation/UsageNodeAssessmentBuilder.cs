@@ -3,7 +3,8 @@ using CodeUsageMap.Contracts.Graph;
 using CodeUsageMap.Contracts.Presentation;
 using CodeUsageMap.Core.Compatibility;
 
-namespace CodeUsageMap.Core.Presentation;
+namespace CodeUsageMap.Core.Presentation
+{
 
 public sealed class UsageNodeAssessmentBuilder
 {
@@ -149,8 +150,8 @@ public sealed class UsageNodeAssessmentBuilder
             return false;
         }
 
-        return value.Contains("test", StringComparison.OrdinalIgnoreCase) ||
-               value.Contains("spec", StringComparison.OrdinalIgnoreCase);
+        return value.IndexOf("test", StringComparison.OrdinalIgnoreCase) >= 0 ||
+               value.IndexOf("spec", StringComparison.OrdinalIgnoreCase) >= 0;
     }
 
     private static bool IsPublicApi(string accessibility)
@@ -160,8 +161,8 @@ public sealed class UsageNodeAssessmentBuilder
             return false;
         }
 
-        return accessibility.Contains("Public", StringComparison.OrdinalIgnoreCase) ||
-               accessibility.Contains("Protected", StringComparison.OrdinalIgnoreCase);
+        return accessibility.IndexOf("Public", StringComparison.OrdinalIgnoreCase) >= 0 ||
+               accessibility.IndexOf("Protected", StringComparison.OrdinalIgnoreCase) >= 0;
     }
 
     private static int ParseComplexityScore(UsageMapNodeViewModel node)
@@ -178,4 +179,5 @@ public sealed class UsageNodeAssessmentBuilder
             ? complexity
             : 0;
     }
+}
 }

@@ -1,4 +1,5 @@
-namespace CodeUsageMap.Contracts.Graph;
+namespace CodeUsageMap.Contracts.Graph
+{
 
 public sealed class GraphEdge
 {
@@ -13,4 +14,5 @@ public sealed class GraphEdge
     public double Confidence { get; init; } = 1.0d;
 
     public IReadOnlyDictionary<string, string> Properties { get; init; } = new Dictionary<string, string>();
+}
 }

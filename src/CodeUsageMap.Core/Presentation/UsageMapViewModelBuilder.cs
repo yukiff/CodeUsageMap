@@ -3,7 +3,8 @@ using CodeUsageMap.Contracts.Graph;
 using CodeUsageMap.Contracts.Presentation;
 using CodeUsageMap.Core.Compatibility;
 
-namespace CodeUsageMap.Core.Presentation;
+namespace CodeUsageMap.Core.Presentation
+{
 
 public sealed class UsageMapViewModelBuilder
 {
@@ -342,4 +343,5 @@ public sealed class UsageMapViewModelBuilder
                 .ToArray(),
         };
     }
+}
 }

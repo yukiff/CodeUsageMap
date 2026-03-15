@@ -1,6 +1,7 @@
 using CodeUsageMap.Contracts.Graph;
 
-namespace CodeUsageMap.Contracts.Analysis;
+namespace CodeUsageMap.Contracts.Analysis
+{
 
 public sealed class ImplementationInfo
 {
@@ -25,4 +26,5 @@ public sealed class ImplementationInfo
     public string ContainingTypeName { get; init; } = string.Empty;
 
     public bool IsOverride { get; init; }
+}
 }

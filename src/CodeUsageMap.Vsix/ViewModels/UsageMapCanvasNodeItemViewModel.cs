@@ -2,7 +2,8 @@ using System.Collections.Generic;
 using CodeUsageMap.Contracts.Graph;
 using CodeUsageMap.Contracts.Presentation;
 
-namespace CodeUsageMap.Vsix.ViewModels;
+namespace CodeUsageMap.Vsix.ViewModels
+{
 
 internal sealed class UsageMapCanvasNodeItemViewModel : ViewModelBase
 {
@@ -47,7 +48,7 @@ internal sealed class UsageMapCanvasNodeItemViewModel : ViewModelBase
 
     public double Opacity { get; set; } = 1d;
 
-    public IReadOnlyList<UsageMapDetailItemViewModel> Details { get; init; } = [];
+    public IReadOnlyList<UsageMapDetailItemViewModel> Details { get; init; } = System.Array.Empty<UsageMapDetailItemViewModel>();
 
     public bool HasChildren { get; set; }
 
@@ -78,4 +79,5 @@ internal sealed class UsageMapCanvasNodeItemViewModel : ViewModelBase
     }
 
     public string CollapseButtonLabel => IsCollapsed ? "Expand" : "Collapse";
+}
 }

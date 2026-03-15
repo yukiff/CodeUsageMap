@@ -2,7 +2,8 @@ using System.Threading.Tasks;
 using EnvDTE;
 using Microsoft.VisualStudio.Shell;
 
-namespace CodeUsageMap.Vsix.Services;
+namespace CodeUsageMap.Vsix.Services
+{
 
 internal sealed class NavigationService
 {
@@ -24,4 +25,5 @@ internal sealed class NavigationService
             selection.GotoLine(lineNumber.Value, Select: false);
         }
     }
+}
 }

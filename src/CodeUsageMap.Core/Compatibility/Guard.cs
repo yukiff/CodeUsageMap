@@ -1,12 +1,12 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace CodeUsageMap.Core.Compatibility;
+namespace CodeUsageMap.Core.Compatibility
+{
 
 internal static class Guard
 {
-    public static void NotNull<T>(T value, string paramName)
-        where T : class
+    public static void NotNull(object value, string paramName)
     {
         if (value is null)
         {
@@ -29,4 +29,5 @@ internal static class PlatformSupport
     {
         return RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
     }
+}
 }

@@ -5,7 +5,8 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.FindSymbols;
 
-namespace CodeUsageMap.Core.References;
+namespace CodeUsageMap.Core.References
+{
 
 public sealed class RoslynReferenceCollector
 {
@@ -77,4 +78,5 @@ public sealed class RoslynReferenceCollector
             _ => NodeKind.Unknown,
         };
     }
+}
 }

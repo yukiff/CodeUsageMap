@@ -1,7 +1,8 @@
 using CodeUsageMap.Core.Compatibility;
 using Microsoft.CodeAnalysis;
 
-namespace CodeUsageMap.Core.Symbols;
+namespace CodeUsageMap.Core.Symbols
+{
 
 internal sealed class MetadataSymbolNormalizer
 {
@@ -156,4 +157,5 @@ internal sealed class MetadataSymbolNormalizer
             }
         }
     }
+}
 }

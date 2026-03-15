@@ -1,6 +1,7 @@
 using CodeUsageMap.Contracts.Graph;
 
-namespace CodeUsageMap.Contracts.Presentation;
+namespace CodeUsageMap.Contracts.Presentation
+{
 
 public sealed class UsageMapFilterCriteria
 {
@@ -23,4 +24,5 @@ public sealed class UsageMapFilterCriteria
     public bool ExcludePackageSymbols { get; init; }
 
     public double? MinimumConfidence { get; init; }
+}
 }

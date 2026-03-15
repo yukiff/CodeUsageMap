@@ -1,6 +1,7 @@
 using CodeUsageMap.Contracts.Graph;
 
-namespace CodeUsageMap.Contracts.Analysis;
+namespace CodeUsageMap.Contracts.Analysis
+{
 
 public sealed class ResolvedSymbol
 {
@@ -13,4 +14,5 @@ public sealed class ResolvedSymbol
     public string Accessibility { get; init; } = string.Empty;
 
     public NodeKind Kind { get; init; } = NodeKind.Unknown;
+}
 }

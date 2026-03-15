@@ -1,7 +1,8 @@
 using Microsoft.Build.Locator;
 using Microsoft.CodeAnalysis.MSBuild;
 
-namespace CodeUsageMap.Core.Symbols;
+namespace CodeUsageMap.Core.Symbols
+{
 
 public sealed class MSBuildWorkspaceLoader : IWorkspaceLoader
 {
@@ -38,4 +39,5 @@ public sealed class MSBuildWorkspaceLoader : IWorkspaceLoader
             _isRegistered = true;
         }
     }
+}
 }

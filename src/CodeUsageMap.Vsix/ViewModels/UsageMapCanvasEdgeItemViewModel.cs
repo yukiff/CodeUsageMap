@@ -1,7 +1,8 @@
 using CodeUsageMap.Contracts.Presentation;
 using CodeUsageMap.Contracts.Graph;
 
-namespace CodeUsageMap.Vsix.ViewModels;
+namespace CodeUsageMap.Vsix.ViewModels
+{
 
 internal sealed class UsageMapCanvasEdgeItemViewModel
 {
@@ -22,4 +23,5 @@ internal sealed class UsageMapCanvasEdgeItemViewModel
     public double Opacity { get; set; } = 1d;
 
     public string PathData { get; init; } = string.Empty;
+}
 }

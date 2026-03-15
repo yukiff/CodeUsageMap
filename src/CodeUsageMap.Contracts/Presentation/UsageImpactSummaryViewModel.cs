@@ -1,4 +1,5 @@
-namespace CodeUsageMap.Contracts.Presentation;
+namespace CodeUsageMap.Contracts.Presentation
+{
 
 public sealed class UsageImpactSummaryViewModel
 {
@@ -13,4 +14,5 @@ public sealed class UsageImpactSummaryViewModel
     public int IncomingReferenceCount { get; init; }
 
     public int ComplexityScore { get; init; }
+}
 }

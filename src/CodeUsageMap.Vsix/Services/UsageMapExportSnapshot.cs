@@ -1,7 +1,8 @@
 using CodeUsageMap.Contracts.Analysis;
 using CodeUsageMap.Contracts.Presentation;
 
-namespace CodeUsageMap.Vsix.Services;
+namespace CodeUsageMap.Vsix.Services
+{
 
 internal sealed class UsageMapExportSnapshot
 {
@@ -10,4 +11,5 @@ internal sealed class UsageMapExportSnapshot
     public required AnalysisResult Result { get; init; }
 
     public required UsageMapViewModel ViewModel { get; init; }
+}
 }

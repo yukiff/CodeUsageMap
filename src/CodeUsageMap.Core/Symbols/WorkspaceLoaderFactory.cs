@@ -1,6 +1,7 @@
 using CodeUsageMap.Core.Compatibility;
 
-namespace CodeUsageMap.Core.Symbols;
+namespace CodeUsageMap.Core.Symbols
+{
 
 public static class WorkspaceLoaderFactory
 {
@@ -25,4 +26,5 @@ public static class WorkspaceLoaderFactory
             ? new MSBuildWorkspaceLoader()
             : new AdhocWorkspaceLoader();
     }
+}
 }

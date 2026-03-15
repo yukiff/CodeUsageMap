@@ -1,6 +1,7 @@
 using Microsoft.CodeAnalysis;
 
-namespace CodeUsageMap.Core.Symbols;
+namespace CodeUsageMap.Core.Symbols
+{
 
 internal sealed class NormalizedSymbolInfo
 {
@@ -15,4 +16,5 @@ internal sealed class NormalizedSymbolInfo
     public string AssemblyIdentity { get; init; } = string.Empty;
 
     public string Limitation { get; init; } = string.Empty;
+}
 }

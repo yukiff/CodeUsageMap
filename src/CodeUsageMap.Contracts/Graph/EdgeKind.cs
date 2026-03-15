@@ -1,4 +1,5 @@
-namespace CodeUsageMap.Contracts.Graph;
+namespace CodeUsageMap.Contracts.Graph
+{
 
 public enum EdgeKind
 {
@@ -17,4 +18,5 @@ public enum EdgeKind
     EventRaise,
     EventDispatchEstimated,
     UnknownDynamicDispatch,
+}
 }

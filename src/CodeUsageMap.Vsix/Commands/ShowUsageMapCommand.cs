@@ -10,7 +10,8 @@ using CodeUsageMap.Vsix.ViewModels;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace CodeUsageMap.Vsix.Commands;
+namespace CodeUsageMap.Vsix.Commands
+{
 
 internal sealed class ShowUsageMapCommand
 {
@@ -163,4 +164,5 @@ internal sealed class ShowUsageMapCommand
         var currentContext = await _symbolContextService.TryGetCurrentContextAsync(_package.DisposalToken);
         return currentContext ?? fallbackContext;
     }
+}
 }

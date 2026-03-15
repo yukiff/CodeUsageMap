@@ -1,4 +1,5 @@
-namespace CodeUsageMap.Contracts.Diagnostics;
+namespace CodeUsageMap.Contracts.Diagnostics
+{
 
 public enum AnalysisConfidence
 {
@@ -7,4 +8,5 @@ public enum AnalysisConfidence
     High,
     Estimated,
     Unclear,
+}
 }

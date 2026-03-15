@@ -1,7 +1,8 @@
 using CodeUsageMap.Contracts.Analysis;
 using CodeUsageMap.Core.Compatibility;
 
-namespace CodeUsageMap.Core.Analysis;
+namespace CodeUsageMap.Core.Analysis
+{
 
 internal static class AnalysisDocumentFilter
 {
@@ -33,7 +34,7 @@ internal static class AnalysisDocumentFilter
 
     private static bool IsTestProject(string projectName, string? filePath)
     {
-        if (projectName.Contains("test", StringComparison.OrdinalIgnoreCase))
+        if (projectName.IndexOf("test", StringComparison.OrdinalIgnoreCase) >= 0)
         {
             return true;
         }
@@ -44,7 +45,7 @@ internal static class AnalysisDocumentFilter
         }
 
         var normalizedPath = filePath.Replace('\\', '/');
-        return normalizedPath.Contains("/tests/", StringComparison.OrdinalIgnoreCase)
+        return normalizedPath.IndexOf("/tests/", StringComparison.OrdinalIgnoreCase) >= 0
             || normalizedPath.EndsWith(".Tests.cs", StringComparison.OrdinalIgnoreCase);
     }
 
@@ -56,7 +57,7 @@ internal static class AnalysisDocumentFilter
         }
 
         var normalizedPath = filePath.Replace('\\', '/');
-        if (normalizedPath.Contains("/obj/", StringComparison.OrdinalIgnoreCase))
+        if (normalizedPath.IndexOf("/obj/", StringComparison.OrdinalIgnoreCase) >= 0)
         {
             return true;
         }
@@ -64,4 +65,5 @@ internal static class AnalysisDocumentFilter
         return GeneratedFileSuffixes.Any(
             suffix => normalizedPath.EndsWith(suffix, StringComparison.OrdinalIgnoreCase));
     }
+}
 }

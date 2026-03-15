@@ -2,7 +2,8 @@ using System.Collections.Generic;
 using CodeUsageMap.Contracts.Graph;
 using CodeUsageMap.Contracts.Presentation;
 
-namespace CodeUsageMap.Vsix.ViewModels;
+namespace CodeUsageMap.Vsix.ViewModels
+{
 
 internal sealed class UsageMapRelationItemViewModel
 {
@@ -44,5 +45,6 @@ internal sealed class UsageMapRelationItemViewModel
 
     public double Opacity { get; set; } = 1d;
 
-    public IReadOnlyList<UsageMapDetailItemViewModel> Details { get; init; } = [];
+    public IReadOnlyList<UsageMapDetailItemViewModel> Details { get; init; } = System.Array.Empty<UsageMapDetailItemViewModel>();
+}
 }

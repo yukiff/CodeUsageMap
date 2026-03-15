@@ -1,4 +1,5 @@
-namespace CodeUsageMap.Contracts.Analysis;
+namespace CodeUsageMap.Contracts.Analysis
+{
 
 public sealed class AnalyzeOptions
 {
@@ -11,4 +12,5 @@ public sealed class AnalyzeOptions
     public bool ExcludeGenerated { get; init; }
 
     public string WorkspaceLoader { get; init; } = string.Empty;
+}
 }

@@ -1,6 +1,7 @@
 using CodeUsageMap.Contracts.Graph;
 
-namespace CodeUsageMap.Contracts.Analysis;
+namespace CodeUsageMap.Contracts.Analysis
+{
 
 public sealed class OutgoingCallInfo
 {
@@ -35,4 +36,5 @@ public sealed class OutgoingCallInfo
     public string Limitation { get; init; } = string.Empty;
 
     public bool ExcludedFromGraph { get; init; }
+}
 }

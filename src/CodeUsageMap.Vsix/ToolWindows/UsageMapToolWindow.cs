@@ -8,7 +8,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using PresentationUsageMapViewModel = CodeUsageMap.Contracts.Presentation.UsageMapViewModel;
 
-namespace CodeUsageMap.Vsix.ToolWindows;
+namespace CodeUsageMap.Vsix.ToolWindows
+{
 
 public sealed class UsageMapToolWindow : ToolWindowPane
 {
@@ -112,4 +113,5 @@ public sealed class UsageMapToolWindow : ToolWindowPane
             _viewModel.ShowError(ex.Message);
         }
     }
+}
 }

@@ -1,7 +1,8 @@
 using CodeUsageMap.Contracts.Diagnostics;
 using CodeUsageMap.Contracts.Graph;
 
-namespace CodeUsageMap.Contracts.Analysis;
+namespace CodeUsageMap.Contracts.Analysis
+{
 
 public sealed class AnalysisResult
 {
@@ -9,5 +10,6 @@ public sealed class AnalysisResult
 
     public SymbolResolutionInfo SymbolResolution { get; init; } = new();
 
-    public IReadOnlyList<AnalysisDiagnostic> Diagnostics { get; init; } = [];
+    public IReadOnlyList<AnalysisDiagnostic> Diagnostics { get; init; } = System.Array.Empty<AnalysisDiagnostic>();
+}
 }

@@ -2,7 +2,8 @@ using System.Collections.Concurrent;
 using CodeUsageMap.Contracts.Analysis;
 using CodeUsageMap.Core.Compatibility;
 
-namespace CodeUsageMap.Core.Analysis;
+namespace CodeUsageMap.Core.Analysis
+{
 
 internal sealed class AnalysisResultCache
 {
@@ -61,4 +62,5 @@ internal sealed class AnalysisResultCache
     {
         public required AnalysisResult Result { get; init; }
     }
+}
 }

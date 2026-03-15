@@ -2,7 +2,8 @@ using CodeUsageMap.Contracts.Analysis;
 using CodeUsageMap.Contracts.Graph;
 using Microsoft.CodeAnalysis;
 
-namespace CodeUsageMap.Core.Symbols;
+namespace CodeUsageMap.Core.Symbols
+{
 
 public sealed class RoslynSymbolResolver
 {
@@ -189,7 +190,7 @@ public sealed class RoslynSymbolResolver
             return NodeKind.Unknown;
         }
 
-        if (symbolName.Contains("::", StringComparison.Ordinal) || symbolName.Contains('('))
+        if (symbolName.IndexOf("::", StringComparison.Ordinal) >= 0 || symbolName.IndexOf('(') >= 0)
         {
             return NodeKind.Method;
         }
@@ -199,8 +200,11 @@ public sealed class RoslynSymbolResolver
             return NodeKind.Event;
         }
 
-        var simpleName = symbolName.Split('.', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).LastOrDefault();
-        if (!string.IsNullOrEmpty(simpleName) && simpleName.StartsWith('I') && simpleName.Length > 1 && char.IsUpper(simpleName[1]))
+        var simpleName = symbolName
+            .Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries)
+            .Select(static part => part.Trim())
+            .LastOrDefault();
+        if (!string.IsNullOrEmpty(simpleName) && simpleName[0] == 'I' && simpleName.Length > 1 && char.IsUpper(simpleName[1]))
         {
             return NodeKind.Interface;
         }
@@ -346,4 +350,5 @@ public sealed class RoslynSymbolResolver
             _ => 10,
         };
     }
+}
 }

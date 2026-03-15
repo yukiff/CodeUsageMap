@@ -1,4 +1,5 @@
-namespace CodeUsageMap.Vsix.ViewModels;
+namespace CodeUsageMap.Vsix.ViewModels
+{
 
 internal sealed class UsageMapMiniMapNodeItemViewModel
 {
@@ -15,4 +16,5 @@ internal sealed class UsageMapMiniMapNodeItemViewModel
     public string Fill { get; init; } = "#FFCBD5E0";
 
     public double Opacity { get; init; } = 0.8d;
+}
 }

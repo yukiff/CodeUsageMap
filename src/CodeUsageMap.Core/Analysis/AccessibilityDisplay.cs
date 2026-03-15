@@ -1,6 +1,7 @@
 using Microsoft.CodeAnalysis;
 
-namespace CodeUsageMap.Core.Analysis;
+namespace CodeUsageMap.Core.Analysis
+{
 
 internal static class AccessibilityDisplay
 {
@@ -22,4 +23,5 @@ internal static class AccessibilityDisplay
             _ => string.Empty,
         };
     }
+}
 }

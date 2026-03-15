@@ -8,7 +8,8 @@ using CodeUsageMap.Core.Presentation;
 using CodeUsageMap.Vsix.ToolWindows;
 using Microsoft.VisualStudio.Shell;
 
-namespace CodeUsageMap.Vsix.Services;
+namespace CodeUsageMap.Vsix.Services
+{
 
 internal sealed class UsageMapAnalysisCoordinator
 {
@@ -183,4 +184,5 @@ internal sealed class UsageMapAnalysisCoordinator
     {
         return $"{message} ({stopwatch.ElapsedMilliseconds} ms)";
     }
+}
 }

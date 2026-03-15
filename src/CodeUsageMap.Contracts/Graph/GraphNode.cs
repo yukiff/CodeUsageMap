@@ -1,4 +1,5 @@
-namespace CodeUsageMap.Contracts.Graph;
+namespace CodeUsageMap.Contracts.Graph
+{
 
 public sealed class GraphNode
 {
@@ -17,4 +18,5 @@ public sealed class GraphNode
     public string SymbolKey { get; init; } = string.Empty;
 
     public IReadOnlyDictionary<string, string> Properties { get; init; } = new Dictionary<string, string>();
+}
 }

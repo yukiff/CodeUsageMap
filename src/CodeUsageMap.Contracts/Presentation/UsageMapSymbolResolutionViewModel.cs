@@ -1,6 +1,7 @@
 using CodeUsageMap.Contracts.Analysis;
 
-namespace CodeUsageMap.Contracts.Presentation;
+namespace CodeUsageMap.Contracts.Presentation
+{
 
 public sealed class UsageMapSymbolResolutionViewModel
 {
@@ -12,5 +13,6 @@ public sealed class UsageMapSymbolResolutionViewModel
 
     public int? SelectedSymbolIndex { get; init; }
 
-    public IReadOnlyList<UsageMapSymbolCandidateViewModel> Candidates { get; init; } = [];
+    public IReadOnlyList<UsageMapSymbolCandidateViewModel> Candidates { get; init; } = System.Array.Empty<UsageMapSymbolCandidateViewModel>();
+}
 }

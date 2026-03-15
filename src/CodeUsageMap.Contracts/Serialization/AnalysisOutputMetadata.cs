@@ -1,7 +1,8 @@
 using CodeUsageMap.Contracts.Analysis;
 using CodeUsageMap.Contracts.Diagnostics;
 
-namespace CodeUsageMap.Contracts.Serialization;
+namespace CodeUsageMap.Contracts.Serialization
+{
 
 public sealed class AnalysisOutputMetadata
 {
@@ -17,5 +18,6 @@ public sealed class AnalysisOutputMetadata
 
     public SymbolResolutionInfo SymbolResolution { get; init; } = new();
 
-    public IReadOnlyList<AnalysisDiagnostic> Diagnostics { get; init; } = [];
+    public IReadOnlyList<AnalysisDiagnostic> Diagnostics { get; init; } = System.Array.Empty<AnalysisDiagnostic>();
+}
 }

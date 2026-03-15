@@ -1,6 +1,7 @@
 using CodeUsageMap.Contracts.Graph;
 
-namespace CodeUsageMap.Contracts.Presentation;
+namespace CodeUsageMap.Contracts.Presentation
+{
 
 public sealed class CanvasNodeViewModel
 {
@@ -40,5 +41,6 @@ public sealed class CanvasNodeViewModel
 
     public string Accent { get; init; } = string.Empty;
 
-    public IReadOnlyList<UsageMapDetailItem> Details { get; init; } = [];
+    public IReadOnlyList<UsageMapDetailItem> Details { get; init; } = System.Array.Empty<UsageMapDetailItem>();
+}
 }

@@ -1,4 +1,5 @@
-namespace CodeUsageMap.Contracts.Analysis;
+namespace CodeUsageMap.Contracts.Analysis
+{
 
 public sealed class AnalyzeRequest
 {
@@ -9,4 +10,5 @@ public sealed class AnalyzeRequest
     public AnalyzeOptions Options { get; init; } = new();
 
     public IProgress<AnalysisProgressUpdate>? Progress { get; init; }
+}
 }

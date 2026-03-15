@@ -5,7 +5,8 @@ using CodeUsageMap.Contracts.Presentation;
 using CodeUsageMap.Contracts.Serialization;
 using CodeUsageMap.Core.Compatibility;
 
-namespace CodeUsageMap.Core.Serialization;
+namespace CodeUsageMap.Core.Serialization
+{
 
 public sealed class DgmlExporter : IUsageGraphSerializer
 {
@@ -30,9 +31,9 @@ public sealed class DgmlExporter : IUsageGraphSerializer
                     graph.Edges.Select(edge =>
                         CreateLinkElement(ns, edge))),
                 new XElement(ns + "Categories",
-                    Enum.GetNames<NodeKind>().Select(kind =>
+                    Enum.GetNames(typeof(NodeKind)).Cast<string>().Select(kind =>
                         new XElement(ns + "Category", new XAttribute("Id", kind))),
-                    Enum.GetNames<EdgeKind>().Select(kind =>
+                    Enum.GetNames(typeof(EdgeKind)).Cast<string>().Select(kind =>
                         new XElement(ns + "Category", new XAttribute("Id", kind))))));
 
         return document.ToString();
@@ -79,9 +80,9 @@ public sealed class DgmlExporter : IUsageGraphSerializer
                     result.Graph.Edges.Select(edge =>
                         CreateLinkElement(ns, edge))),
                 new XElement(ns + "Categories",
-                    Enum.GetNames<NodeKind>().Select(kind =>
+                    Enum.GetNames(typeof(NodeKind)).Cast<string>().Select(kind =>
                         new XElement(ns + "Category", new XAttribute("Id", kind))),
-                    Enum.GetNames<EdgeKind>().Select(kind =>
+                    Enum.GetNames(typeof(EdgeKind)).Cast<string>().Select(kind =>
                         new XElement(ns + "Category", new XAttribute("Id", kind))))));
 
         return document.ToString();
@@ -118,4 +119,5 @@ public sealed class DgmlExporter : IUsageGraphSerializer
             element.SetAttributeValue(property.Key, property.Value);
         }
     }
+}
 }

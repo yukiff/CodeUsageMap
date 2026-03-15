@@ -9,7 +9,8 @@ using CodeUsageMap.Vsix.ViewModels;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.Win32;
 
-namespace CodeUsageMap.Vsix.Services;
+namespace CodeUsageMap.Vsix.Services
+{
 
 internal sealed class UsageMapExportService
 {
@@ -101,4 +102,5 @@ internal sealed class UsageMapExportService
         var sanitized = new string(fileName.Select(character => invalidChars.Contains(character) ? '_' : character).ToArray());
         return string.IsNullOrWhiteSpace(sanitized) ? "usage-map" : sanitized;
     }
+}
 }

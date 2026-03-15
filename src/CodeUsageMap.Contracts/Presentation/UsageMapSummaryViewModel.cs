@@ -1,4 +1,5 @@
-namespace CodeUsageMap.Contracts.Presentation;
+namespace CodeUsageMap.Contracts.Presentation
+{
 
 public sealed class UsageMapSummaryViewModel
 {
@@ -13,4 +14,5 @@ public sealed class UsageMapSummaryViewModel
     public int RelatedCount { get; init; }
 
     public int DiagnosticCount { get; init; }
+}
 }

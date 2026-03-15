@@ -13,7 +13,8 @@ using CodeUsageMap.Vsix.Services;
 using PresentationGraphCanvasViewModel = CodeUsageMap.Contracts.Presentation.GraphCanvasViewModel;
 using PresentationUsageMapViewModel = CodeUsageMap.Contracts.Presentation.UsageMapViewModel;
 
-namespace CodeUsageMap.Vsix.ViewModels;
+namespace CodeUsageMap.Vsix.ViewModels
+{
 
 internal sealed class UsageMapViewModel : ViewModelBase
 {
@@ -103,45 +104,45 @@ internal sealed class UsageMapViewModel : ViewModelBase
         UpdateLegendItems();
     }
 
-    public ObservableCollection<UsageMapNodeItemViewModel> Nodes { get; } = [];
+    public ObservableCollection<UsageMapNodeItemViewModel> Nodes { get; } = new ObservableCollection<UsageMapNodeItemViewModel>();
 
-    public ObservableCollection<UsageMapRelationItemViewModel> IncomingRelations { get; } = [];
+    public ObservableCollection<UsageMapRelationItemViewModel> IncomingRelations { get; } = new ObservableCollection<UsageMapRelationItemViewModel>();
 
-    public ObservableCollection<UsageMapRelationItemViewModel> OutgoingRelations { get; } = [];
+    public ObservableCollection<UsageMapRelationItemViewModel> OutgoingRelations { get; } = new ObservableCollection<UsageMapRelationItemViewModel>();
 
-    public ObservableCollection<UsageMapRelationItemViewModel> RelatedRelations { get; } = [];
+    public ObservableCollection<UsageMapRelationItemViewModel> RelatedRelations { get; } = new ObservableCollection<UsageMapRelationItemViewModel>();
 
-    public ObservableCollection<UsageMapDetailItemViewModel> Details { get; } = [];
+    public ObservableCollection<UsageMapDetailItemViewModel> Details { get; } = new ObservableCollection<UsageMapDetailItemViewModel>();
 
-    public ObservableCollection<UsageMapDiagnosticItemViewModel> Diagnostics { get; } = [];
+    public ObservableCollection<UsageMapDiagnosticItemViewModel> Diagnostics { get; } = new ObservableCollection<UsageMapDiagnosticItemViewModel>();
 
-    public ObservableCollection<string> AvailableProjectNames { get; } = [];
+    public ObservableCollection<string> AvailableProjectNames { get; } = new ObservableCollection<string>();
 
-    public ObservableCollection<string> AvailableNamespaceNames { get; } = [];
+    public ObservableCollection<string> AvailableNamespaceNames { get; } = new ObservableCollection<string>();
 
-    public ObservableCollection<string> AvailableAccessibilities { get; } = [];
+    public ObservableCollection<string> AvailableAccessibilities { get; } = new ObservableCollection<string>();
 
-    public ObservableCollection<UsageMapSymbolCandidateItemViewModel> SymbolCandidates { get; } = [];
+    public ObservableCollection<UsageMapSymbolCandidateItemViewModel> SymbolCandidates { get; } = new ObservableCollection<UsageMapSymbolCandidateItemViewModel>();
 
-    public ObservableCollection<UsageMapCanvasNodeItemViewModel> GraphCanvasNodes { get; } = [];
+    public ObservableCollection<UsageMapCanvasNodeItemViewModel> GraphCanvasNodes { get; } = new ObservableCollection<UsageMapCanvasNodeItemViewModel>();
 
-    public ObservableCollection<UsageMapCanvasEdgeItemViewModel> GraphCanvasEdges { get; } = [];
+    public ObservableCollection<UsageMapCanvasEdgeItemViewModel> GraphCanvasEdges { get; } = new ObservableCollection<UsageMapCanvasEdgeItemViewModel>();
 
-    public ObservableCollection<UsageMapRootSearchResultItemViewModel> RootSearchResults { get; } = [];
+    public ObservableCollection<UsageMapRootSearchResultItemViewModel> RootSearchResults { get; } = new ObservableCollection<UsageMapRootSearchResultItemViewModel>();
 
-    public ObservableCollection<UsageMapBreadcrumbItemViewModel> BreadcrumbItems { get; } = [];
+    public ObservableCollection<UsageMapBreadcrumbItemViewModel> BreadcrumbItems { get; } = new ObservableCollection<UsageMapBreadcrumbItemViewModel>();
 
-    public ObservableCollection<UsageMapLegendItemViewModel> LegendItems { get; } = [];
+    public ObservableCollection<UsageMapLegendItemViewModel> LegendItems { get; } = new ObservableCollection<UsageMapLegendItemViewModel>();
 
-    public ObservableCollection<UsageMapMiniMapNodeItemViewModel> MiniMapNodes { get; } = [];
+    public ObservableCollection<UsageMapMiniMapNodeItemViewModel> MiniMapNodes { get; } = new ObservableCollection<UsageMapMiniMapNodeItemViewModel>();
 
-    public ObservableCollection<UsageMapStatItemViewModel> SelectedNodeStats { get; } = [];
+    public ObservableCollection<UsageMapStatItemViewModel> SelectedNodeStats { get; } = new ObservableCollection<UsageMapStatItemViewModel>();
 
-    public ObservableCollection<UsageMapStatItemViewModel> SelectedNodeImpactSummary { get; } = [];
+    public ObservableCollection<UsageMapStatItemViewModel> SelectedNodeImpactSummary { get; } = new ObservableCollection<UsageMapStatItemViewModel>();
 
-    public ObservableCollection<UsageMapStatItemViewModel> SelectedNodeRiskSummary { get; } = [];
+    public ObservableCollection<UsageMapStatItemViewModel> SelectedNodeRiskSummary { get; } = new ObservableCollection<UsageMapStatItemViewModel>();
 
-    public ObservableCollection<UsageMapDetailItemViewModel> SelectedNodeHighlights { get; } = [];
+    public ObservableCollection<UsageMapDetailItemViewModel> SelectedNodeHighlights { get; } = new ObservableCollection<UsageMapDetailItemViewModel>();
 
     public RelayCommand OpenSelectedNodeCommand { get; }
 
@@ -165,19 +166,21 @@ internal sealed class UsageMapViewModel : ViewModelBase
 
     public RelayCommand ExportDgmlCommand { get; }
 
-    public IReadOnlyList<int> AvailableDepths { get; } = [1, 2, 3];
+    public IReadOnlyList<int> AvailableDepths { get; } = new[] { 1, 2, 3 };
 
-    public IReadOnlyList<string> AvailableEdgeKinds { get; } = [AllFilterValue, .. Enum.GetNames<EdgeKind>()];
+    public IReadOnlyList<string> AvailableEdgeKinds { get; } =
+        new[] { AllFilterValue }.Concat(Enum.GetNames(typeof(EdgeKind)).Cast<string>()).ToArray();
 
-    public IReadOnlyList<string> AvailableNodeKinds { get; } = [AllFilterValue, .. Enum.GetNames<NodeKind>()];
+    public IReadOnlyList<string> AvailableNodeKinds { get; } =
+        new[] { AllFilterValue }.Concat(Enum.GetNames(typeof(NodeKind)).Cast<string>()).ToArray();
 
     public IReadOnlyList<string> AvailableConfidenceThresholds { get; } =
-        [AllFilterValue, "0.50", "0.75", "0.90", "1.00"];
+        new[] { AllFilterValue, "0.50", "0.75", "0.90", "1.00" };
 
     public IReadOnlyList<GraphCanvasDisplayMode> AvailableDisplayModes { get; } =
-        Enum.GetValues<GraphCanvasDisplayMode>();
+        Enum.GetValues(typeof(GraphCanvasDisplayMode)).Cast<GraphCanvasDisplayMode>().ToArray();
 
-    public IReadOnlyList<int> AvailableCanvasNodeLimits { get; } = [24, 40, 80, 160];
+    public IReadOnlyList<int> AvailableCanvasNodeLimits { get; } = new[] { 24, 40, 80, 160 };
 
     public string Title
     {
@@ -744,10 +747,10 @@ internal sealed class UsageMapViewModel : ViewModelBase
         _activeModel = null;
         _collapsedCanvasNodeIds.Clear();
         HasExportableResult = false;
-        Replace(SymbolCandidates, []);
+        Replace(SymbolCandidates, Array.Empty<UsageMapSymbolCandidateItemViewModel>());
         HasSymbolCandidates = false;
         SelectedSymbolCandidate = null;
-        Replace(Diagnostics, []);
+        Replace(Diagnostics, Array.Empty<UsageMapDiagnosticItemViewModel>());
         OnPropertyChanged(nameof(HasDiagnostics));
 
         Replace(Nodes, [previewNode]);
@@ -759,7 +762,7 @@ internal sealed class UsageMapViewModel : ViewModelBase
         }
 
         Replace(GraphCanvasNodes, [ToCanvasPreviewNode(previewNode)]);
-        Replace(GraphCanvasEdges, []);
+        Replace(GraphCanvasEdges, Array.Empty<UsageMapCanvasEdgeItemViewModel>());
         GraphCanvasWidth = 960d;
         GraphCanvasHeight = 180d;
         SelectedCanvasNode = GraphCanvasNodes.FirstOrDefault();
@@ -767,15 +770,15 @@ internal sealed class UsageMapViewModel : ViewModelBase
         UpdateBreadcrumbItems();
         UpdateMiniMapNodes();
 
-        Replace(IncomingRelations, []);
-        Replace(OutgoingRelations, []);
-        Replace(RelatedRelations, []);
+        Replace(IncomingRelations, Array.Empty<UsageMapRelationItemViewModel>());
+        Replace(OutgoingRelations, Array.Empty<UsageMapRelationItemViewModel>());
+        Replace(RelatedRelations, Array.Empty<UsageMapRelationItemViewModel>());
         Replace(Details, previewNode.Details);
 
         SelectedRelation = null;
-        UpdateProjectNames([]);
-        UpdateNamespaceNames([]);
-        UpdateAccessibilities([]);
+        UpdateProjectNames(Array.Empty<string>());
+        UpdateNamespaceNames(Array.Empty<string>());
+        UpdateAccessibilities(Array.Empty<string>());
     }
 
     public void ReportStatus(string statusMessage)
@@ -859,10 +862,10 @@ internal sealed class UsageMapViewModel : ViewModelBase
         HasExportableResult = false;
         _collapsedCanvasNodeIds.Clear();
         _loadedCanvasModel = null;
-        Replace(Diagnostics, []);
-        Replace(GraphCanvasNodes, []);
-        Replace(GraphCanvasEdges, []);
-        Replace(MiniMapNodes, []);
+        Replace(Diagnostics, Array.Empty<UsageMapDiagnosticItemViewModel>());
+        Replace(GraphCanvasNodes, Array.Empty<UsageMapCanvasNodeItemViewModel>());
+        Replace(GraphCanvasEdges, Array.Empty<UsageMapCanvasEdgeItemViewModel>());
+        Replace(MiniMapNodes, Array.Empty<UsageMapMiniMapNodeItemViewModel>());
         SelectedCanvasNode = null;
         OnPropertyChanged(nameof(HasGraphCanvas));
         OnPropertyChanged(nameof(HasDiagnostics));
@@ -879,10 +882,10 @@ internal sealed class UsageMapViewModel : ViewModelBase
         HasExportableResult = false;
         _collapsedCanvasNodeIds.Clear();
         _loadedCanvasModel = null;
-        Replace(Diagnostics, []);
-        Replace(GraphCanvasNodes, []);
-        Replace(GraphCanvasEdges, []);
-        Replace(MiniMapNodes, []);
+        Replace(Diagnostics, Array.Empty<UsageMapDiagnosticItemViewModel>());
+        Replace(GraphCanvasNodes, Array.Empty<UsageMapCanvasNodeItemViewModel>());
+        Replace(GraphCanvasEdges, Array.Empty<UsageMapCanvasEdgeItemViewModel>());
+        Replace(MiniMapNodes, Array.Empty<UsageMapMiniMapNodeItemViewModel>());
         SelectedCanvasNode = null;
         OnPropertyChanged(nameof(HasGraphCanvas));
         OnPropertyChanged(nameof(HasDiagnostics));
@@ -1010,7 +1013,7 @@ internal sealed class UsageMapViewModel : ViewModelBase
         _rootSearchCancellation = null;
         RootSearchText = string.Empty;
         RootSearchStatusMessage = "Type 2 or more characters to search for a new root.";
-        Replace(RootSearchResults, []);
+        Replace(RootSearchResults, Array.Empty<UsageMapRootSearchResultItemViewModel>());
         SelectedRootSearchResult = null;
         OnPropertyChanged(nameof(HasRootSearchResults));
         ApplySelectedRootSearchResultCommand.RaiseCanExecuteChanged();
@@ -1042,7 +1045,7 @@ internal sealed class UsageMapViewModel : ViewModelBase
         if (query.Length < 2)
         {
             RootSearchStatusMessage = "Type 2 or more characters to search for a new root.";
-            Replace(RootSearchResults, []);
+            Replace(RootSearchResults, Array.Empty<UsageMapRootSearchResultItemViewModel>());
             SelectedRootSearchResult = null;
             OnPropertyChanged(nameof(HasRootSearchResults));
             ApplySelectedRootSearchResultCommand.RaiseCanExecuteChanged();
@@ -1080,7 +1083,7 @@ internal sealed class UsageMapViewModel : ViewModelBase
         }
         catch (Exception ex)
         {
-            Replace(RootSearchResults, []);
+            Replace(RootSearchResults, Array.Empty<UsageMapRootSearchResultItemViewModel>());
             SelectedRootSearchResult = null;
             RootSearchStatusMessage = ex.Message;
             OnPropertyChanged(nameof(HasRootSearchResults));
@@ -1148,7 +1151,7 @@ internal sealed class UsageMapViewModel : ViewModelBase
 
     private void LoadDetails(IReadOnlyList<UsageMapDetailItemViewModel>? items)
     {
-        Replace(Details, items ?? []);
+        Replace(Details, items ?? Array.Empty<UsageMapDetailItemViewModel>());
     }
 
     private void UpdateSelectedNodeDetails()
@@ -1161,10 +1164,10 @@ internal sealed class UsageMapViewModel : ViewModelBase
             SelectedNodeLocation = string.Empty;
             SelectedNodeSignature = string.Empty;
             SelectedNodeSummaryText = string.Empty;
-            Replace(SelectedNodeStats, []);
-            Replace(SelectedNodeImpactSummary, []);
-            Replace(SelectedNodeRiskSummary, []);
-            Replace(SelectedNodeHighlights, []);
+            Replace(SelectedNodeStats, Array.Empty<UsageMapStatItemViewModel>());
+            Replace(SelectedNodeImpactSummary, Array.Empty<UsageMapStatItemViewModel>());
+            Replace(SelectedNodeRiskSummary, Array.Empty<UsageMapStatItemViewModel>());
+            Replace(SelectedNodeHighlights, Array.Empty<UsageMapDetailItemViewModel>());
             OnPropertyChanged(nameof(HasSelectedNodeStats));
             OnPropertyChanged(nameof(HasSelectedNodeImpactSummary));
             OnPropertyChanged(nameof(HasSelectedNodeRiskSummary));
@@ -1173,7 +1176,7 @@ internal sealed class UsageMapViewModel : ViewModelBase
         }
 
         var selectedNode = SelectedNode;
-        var details = selectedNode.Details ?? [];
+        var details = selectedNode.Details ?? Array.Empty<UsageMapDetailItemViewModel>();
         SelectedNodeTitle = selectedNode.DisplayName;
         SelectedNodeSubtitle = BuildSelectedNodeSubtitle(selectedNode, SelectedCanvasNode);
         SelectedNodeProject = string.IsNullOrWhiteSpace(selectedNode.ProjectName)
@@ -1250,7 +1253,7 @@ internal sealed class UsageMapViewModel : ViewModelBase
                 new UsageMapLegendItemViewModel { Swatch = "#FF5A6D8A", Label = "Subscription", Description = "Subscription and raise flow edges." },
                 new UsageMapLegendItemViewModel { Swatch = "#FF9A9A9A", Label = "Estimated", Description = "Estimated event dispatch edges." },
             ],
-            _ => [],
+            _ => Array.Empty<UsageMapLegendItemViewModel>(),
         };
 
         Replace(LegendItems, items);
@@ -1260,7 +1263,7 @@ internal sealed class UsageMapViewModel : ViewModelBase
     {
         if (GraphCanvasNodes.Count == 0)
         {
-            Replace(MiniMapNodes, []);
+            Replace(MiniMapNodes, Array.Empty<UsageMapMiniMapNodeItemViewModel>());
             MiniMapWidth = 180d;
             MiniMapHeight = 120d;
             MiniMapViewportLeft = 0d;
@@ -1605,8 +1608,8 @@ internal sealed class UsageMapViewModel : ViewModelBase
 
     private static bool ContainsAsyncMarker(string value)
     {
-        return value.Contains("Async", StringComparison.Ordinal) ||
-               value.Contains("await", StringComparison.OrdinalIgnoreCase);
+        return value.IndexOf("Async", StringComparison.Ordinal) >= 0 ||
+               value.IndexOf("await", StringComparison.OrdinalIgnoreCase) >= 0;
     }
 
     private bool HasHighlightFocus => HighlightInterfaceFlow || HighlightEventFlow || HighlightAsyncFlow;
@@ -1731,7 +1734,7 @@ internal sealed class UsageMapViewModel : ViewModelBase
             .Concat(model.OutgoingRelations.Select(static relation => relation.Accessibility))
             .Concat(model.RelatedRelations.Select(static relation => relation.Accessibility))
             .Where(static accessibility => !string.IsNullOrWhiteSpace(accessibility))
-            .SelectMany(static accessibility => accessibility.Split('|', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+            .SelectMany(static accessibility => accessibility.Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries).Select(static value => value.Trim()))
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .OrderBy(static accessibility => accessibility, StringComparer.OrdinalIgnoreCase);
 
@@ -1742,7 +1745,7 @@ internal sealed class UsageMapViewModel : ViewModelBase
     {
         Replace(AvailableProjectNames, new[] { AllFilterValue }.Concat(projectNames));
 
-        if (!AvailableProjectNames.Contains(SelectedProjectName, StringComparer.Ordinal))
+        if (!AvailableProjectNames.Any(name => string.Equals(name, SelectedProjectName, StringComparison.Ordinal)))
         {
             SelectedProjectName = AllFilterValue;
         }
@@ -1752,7 +1755,7 @@ internal sealed class UsageMapViewModel : ViewModelBase
     {
         Replace(AvailableNamespaceNames, new[] { AllFilterValue }.Concat(namespaceNames));
 
-        if (!AvailableNamespaceNames.Contains(SelectedNamespaceName, StringComparer.Ordinal))
+        if (!AvailableNamespaceNames.Any(name => string.Equals(name, SelectedNamespaceName, StringComparison.Ordinal)))
         {
             SelectedNamespaceName = AllFilterValue;
         }
@@ -1762,7 +1765,7 @@ internal sealed class UsageMapViewModel : ViewModelBase
     {
         Replace(AvailableAccessibilities, new[] { AllFilterValue }.Concat(accessibilities));
 
-        if (!AvailableAccessibilities.Contains(SelectedAccessibility, StringComparer.Ordinal))
+        if (!AvailableAccessibilities.Any(name => string.Equals(name, SelectedAccessibility, StringComparison.Ordinal)))
         {
             SelectedAccessibility = AllFilterValue;
         }
@@ -1847,8 +1850,8 @@ internal sealed class UsageMapViewModel : ViewModelBase
     {
         if (_loadedCanvasModel is null)
         {
-            Replace(GraphCanvasNodes, []);
-            Replace(GraphCanvasEdges, []);
+            Replace(GraphCanvasNodes, Array.Empty<UsageMapCanvasNodeItemViewModel>());
+            Replace(GraphCanvasEdges, Array.Empty<UsageMapCanvasEdgeItemViewModel>());
             GraphCanvasWidth = 960d;
             GraphCanvasHeight = 180d;
             OnPropertyChanged(nameof(HasGraphCanvas));
@@ -1866,8 +1869,8 @@ internal sealed class UsageMapViewModel : ViewModelBase
 
         if (filteredCanvasNodes.Length == 0)
         {
-            Replace(GraphCanvasNodes, []);
-            Replace(GraphCanvasEdges, []);
+            Replace(GraphCanvasNodes, Array.Empty<UsageMapCanvasNodeItemViewModel>());
+            Replace(GraphCanvasEdges, Array.Empty<UsageMapCanvasEdgeItemViewModel>());
             GraphCanvasWidth = 960d;
             GraphCanvasHeight = 180d;
             OnPropertyChanged(nameof(HasGraphCanvas));
@@ -2011,8 +2014,8 @@ internal sealed class UsageMapViewModel : ViewModelBase
         var degreeMap = new Dictionary<string, int>(StringComparer.Ordinal);
         foreach (var edge in edgeItems)
         {
-            degreeMap[edge.SourceId] = degreeMap.GetValueOrDefault(edge.SourceId) + 1;
-            degreeMap[edge.TargetId] = degreeMap.GetValueOrDefault(edge.TargetId) + 1;
+            degreeMap[edge.SourceId] = degreeMap.TryGetValue(edge.SourceId, out var sourceCount) ? sourceCount + 1 : 1;
+            degreeMap[edge.TargetId] = degreeMap.TryGetValue(edge.TargetId, out var targetCount) ? targetCount + 1 : 1;
         }
 
         return degreeMap;
@@ -2542,7 +2545,7 @@ internal sealed class UsageMapViewModel : ViewModelBase
 
     private IEnumerable<UsageMapStatItemViewModel> BuildSelectedNodeStats(UsageMapNodeItemViewModel node)
     {
-        var edges = _activeModel?.Edges ?? [];
+        var edges = _activeModel?.Edges ?? Array.Empty<UsageMapEdgeViewModel>();
         var incomingCount = edges.Count(edge => string.Equals(edge.TargetId, node.Id, StringComparison.Ordinal));
         var outgoingCount = edges.Count(edge => string.Equals(edge.SourceId, node.Id, StringComparison.Ordinal));
         var relatedCount = edges.Count(edge =>
@@ -2702,7 +2705,7 @@ internal sealed class UsageMapViewModel : ViewModelBase
         ];
 
         return details
-            .Where(item => !hiddenKeys.Contains(item.Key, StringComparer.OrdinalIgnoreCase))
+            .Where(item => !hiddenKeys.Any(key => string.Equals(key, item.Key, StringComparison.OrdinalIgnoreCase)))
             .OrderBy(item =>
             {
                 var index = Array.FindIndex(
@@ -2746,7 +2749,7 @@ internal sealed class UsageMapViewModel : ViewModelBase
         for (var index = 0; index < key.Length; index++)
         {
             var current = key[index];
-            if (index > 0 && char.IsUpper(current) && !char.IsWhiteSpace(builder[^1]))
+            if (index > 0 && char.IsUpper(current) && !char.IsWhiteSpace(builder[builder.Count - 1]))
             {
                 builder.Add(' ');
             }
@@ -2883,4 +2886,5 @@ internal sealed class UsageMapViewModel : ViewModelBase
         double StartY,
         double EndX,
         double EndY);
+}
 }

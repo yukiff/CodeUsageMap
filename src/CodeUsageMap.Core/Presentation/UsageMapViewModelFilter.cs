@@ -1,7 +1,8 @@
 using CodeUsageMap.Contracts.Presentation;
 using CodeUsageMap.Core.Compatibility;
 
-namespace CodeUsageMap.Core.Presentation;
+namespace CodeUsageMap.Core.Presentation
+{
 
 public sealed class UsageMapViewModelFilter
 {
@@ -124,6 +125,7 @@ public sealed class UsageMapViewModelFilter
 
     private static bool Contains(string value, string searchText)
     {
-        return value.Contains(searchText, StringComparison.OrdinalIgnoreCase);
+        return value.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0;
     }
+}
 }

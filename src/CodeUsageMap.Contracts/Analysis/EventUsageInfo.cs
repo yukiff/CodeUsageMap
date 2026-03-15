@@ -1,7 +1,8 @@
 using CodeUsageMap.Contracts.Diagnostics;
 using CodeUsageMap.Contracts.Graph;
 
-namespace CodeUsageMap.Contracts.Analysis;
+namespace CodeUsageMap.Contracts.Analysis
+{
 
 public sealed class EventUsageInfo
 {
@@ -38,4 +39,5 @@ public sealed class EventUsageInfo
     public AnalysisConfidence Confidence { get; init; } = AnalysisConfidence.High;
 
     public bool IsUnsubscribed { get; init; }
+}
 }

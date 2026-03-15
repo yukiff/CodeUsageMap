@@ -3,7 +3,8 @@ using CodeUsageMap.Contracts.Graph;
 using CodeUsageMap.Contracts.Presentation;
 using CodeUsageMap.Core.Compatibility;
 
-namespace CodeUsageMap.Core.Presentation;
+namespace CodeUsageMap.Core.Presentation
+{
 
 public sealed class GraphCanvasViewModelBuilder
 {
@@ -412,12 +413,12 @@ public sealed class GraphCanvasViewModelBuilder
             var key = keySelector(edge);
             if (!map.TryGetValue(key, out var list))
             {
-                list = [];
+                list = new List<string>();
                 map[key] = list;
             }
 
             var value = valueSelector(edge);
-            if (!list.Contains(value, StringComparer.Ordinal))
+            if (!list.Any(existingValue => string.Equals(existingValue, value, StringComparison.Ordinal)))
             {
                 list.Add(value);
             }
@@ -498,11 +499,11 @@ public sealed class GraphCanvasViewModelBuilder
     {
         if (!adjacency.TryGetValue(key, out var list))
         {
-            list = [];
+            list = new List<string>();
             adjacency[key] = list;
         }
 
-        if (!list.Contains(neighbor, StringComparer.Ordinal))
+        if (!list.Any(existingNeighbor => string.Equals(existingNeighbor, neighbor, StringComparison.Ordinal)))
         {
             list.Add(neighbor);
         }
@@ -558,4 +559,5 @@ public sealed class GraphCanvasViewModelBuilder
         int Order,
         double X,
         double Y);
+}
 }

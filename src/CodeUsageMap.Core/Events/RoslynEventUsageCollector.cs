@@ -6,7 +6,8 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Operations;
 
-namespace CodeUsageMap.Core.Events;
+namespace CodeUsageMap.Core.Events
+{
 
 public sealed class RoslynEventUsageCollector
 {
@@ -20,7 +21,7 @@ public sealed class RoslynEventUsageCollector
         {
             IEventSymbol eventSymbol => await CollectForEventAsync(eventSymbol, solution, options, cancellationToken),
             IMethodSymbol methodSymbol => await CollectForHandlerAsync(methodSymbol, solution, options, cancellationToken),
-            _ => [],
+            _ => System.Array.Empty<EventUsageInfo>(),
         };
     }
 
@@ -409,4 +410,5 @@ public sealed class RoslynEventUsageCollector
 
         return null;
     }
+}
 }

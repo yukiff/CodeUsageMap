@@ -7,7 +7,8 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Operations;
 
-namespace CodeUsageMap.Core.Di;
+namespace CodeUsageMap.Core.Di
+{
 
 public sealed class RoslynDiRegistrationAnalyzer
 {
@@ -31,7 +32,7 @@ public sealed class RoslynDiRegistrationAnalyzer
         var targetType = ResolveTargetType(symbol);
         if (targetType is null)
         {
-            return [];
+            return System.Array.Empty<DiRegistrationInfo>();
         }
 
         var results = new Dictionary<string, DiRegistrationInfo>(StringComparer.Ordinal);
@@ -119,7 +120,7 @@ public sealed class RoslynDiRegistrationAnalyzer
         var lineSpan = invocation.GetLocation().GetLineSpan();
         var lineNumber = lineSpan.StartLinePosition.Line + 1;
         var filePath = document.FilePath ?? document.Name;
-        var lifetime = method.Name["Add".Length..];
+        var lifetime = method.Name.Substring("Add".Length);
         var registrationId = $"{document.Project.Name}:{filePath}:{lineNumber}:{serviceSymbol.GetDocumentationCommentId() ?? serviceSymbol.ToDisplayString()}->{implementationSymbol.GetDocumentationCommentId() ?? implementationSymbol.ToDisplayString()}";
 
         info = new DiRegistrationInfo
@@ -273,11 +274,18 @@ public sealed class RoslynDiRegistrationAnalyzer
             .FirstOrDefault(candidate =>
                 candidate.Arity == serviceMethod.Arity &&
                 candidate.Parameters.Length == serviceMethod.Parameters.Length &&
-                candidate.Parameters.Zip(serviceMethod.Parameters).All(static pair =>
-                    string.Equals(
-                        pair.First.Type.ToDisplayString(SymbolDisplayFormat.CSharpErrorMessageFormat),
-                        pair.Second.Type.ToDisplayString(SymbolDisplayFormat.CSharpErrorMessageFormat),
-                        StringComparison.Ordinal)));
+                candidate.Parameters.Zip(
+                        serviceMethod.Parameters,
+                        static (first, second) => new
+                        {
+                            First = first,
+                            Second = second,
+                        })
+                    .All(static pair =>
+                        string.Equals(
+                            pair.First.Type.ToDisplayString(SymbolDisplayFormat.CSharpErrorMessageFormat),
+                            pair.Second.Type.ToDisplayString(SymbolDisplayFormat.CSharpErrorMessageFormat),
+                            StringComparison.Ordinal)));
     }
 
     private static INamedTypeSymbol? ResolveTargetType(ISymbol symbol)
@@ -309,4 +317,5 @@ public sealed class RoslynDiRegistrationAnalyzer
             _ => NodeKind.Unknown,
         };
     }
+}
 }

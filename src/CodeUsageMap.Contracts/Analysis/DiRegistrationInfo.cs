@@ -1,7 +1,8 @@
 using CodeUsageMap.Contracts.Diagnostics;
 using CodeUsageMap.Contracts.Graph;
 
-namespace CodeUsageMap.Contracts.Analysis;
+namespace CodeUsageMap.Contracts.Analysis
+{
 
 public sealed class DiRegistrationInfo
 {
@@ -36,4 +37,5 @@ public sealed class DiRegistrationInfo
     public string RegistrationText { get; init; } = string.Empty;
 
     public AnalysisConfidence Confidence { get; init; } = AnalysisConfidence.High;
+}
 }

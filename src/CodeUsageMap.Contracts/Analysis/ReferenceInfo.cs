@@ -1,6 +1,7 @@
 using CodeUsageMap.Contracts.Graph;
 
-namespace CodeUsageMap.Contracts.Analysis;
+namespace CodeUsageMap.Contracts.Analysis
+{
 
 public sealed class ReferenceInfo
 {
@@ -23,4 +24,5 @@ public sealed class ReferenceInfo
     public string SyntaxKind { get; init; } = string.Empty;
 
     public string ReferenceText { get; init; } = string.Empty;
+}
 }

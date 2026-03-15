@@ -1,4 +1,5 @@
-namespace CodeUsageMap.Contracts.Presentation;
+namespace CodeUsageMap.Contracts.Presentation
+{
 
 public enum CanvasNodeLane
 {
@@ -6,4 +7,5 @@ public enum CanvasNodeLane
     Inbound,
     Outbound,
     Related,
+}
 }

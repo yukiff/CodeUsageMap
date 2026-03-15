@@ -1,4 +1,5 @@
-namespace CodeUsageMap.Contracts.Presentation;
+namespace CodeUsageMap.Contracts.Presentation
+{
 
 public sealed class UsageRiskSummaryViewModel
 {
@@ -8,5 +9,6 @@ public sealed class UsageRiskSummaryViewModel
 
     public bool IsPublicApi { get; init; }
 
-    public IReadOnlyList<string> Drivers { get; init; } = [];
+    public IReadOnlyList<string> Drivers { get; init; } = System.Array.Empty<string>();
+}
 }
