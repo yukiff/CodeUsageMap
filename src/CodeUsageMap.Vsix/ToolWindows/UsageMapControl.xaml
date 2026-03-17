@@ -20,186 +20,118 @@
       <ColumnDefinition Width="*" />
     </Grid.ColumnDefinitions>
 
-    <TextBlock Grid.Row="0"
-               Grid.ColumnSpan="3"
-               FontSize="16"
-               FontWeight="SemiBold"
-               Text="{Binding Title}" />
+    <!-- Header -->
+    <StackPanel Grid.Row="0" Grid.ColumnSpan="3" Margin="0,0,0,8">
+      <TextBlock FontSize="18" FontWeight="Bold" Text="{Binding Title}" Foreground="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+      <TextBlock FontSize="12" Margin="0,2,0,0" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Text="{Binding Summary}" TextWrapping="Wrap" />
+    </StackPanel>
 
-    <TextBlock Grid.Row="1"
-               Grid.ColumnSpan="3"
-               Margin="0,6,0,12"
-               Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"
-               Text="{Binding Summary}" />
-
-    <DockPanel Grid.Row="2"
-               Grid.ColumnSpan="3"
-               Margin="0,0,0,12">
-      <StackPanel DockPanel.Dock="Right"
-                  Orientation="Horizontal">
-        <Button Width="110"
-                Margin="12,0,0,0"
-                Command="{Binding ExportJsonCommand}"
-                Content="Export JSON" />
-        <Button Width="140"
-                Margin="12,0,0,0"
-                Command="{Binding ExportViewModelJsonCommand}"
-                Content="Export ViewModel" />
-        <Button Width="110"
-                Margin="12,0,0,0"
-                Command="{Binding ExportDgmlCommand}"
-                Content="Export DGML" />
-        <Button Width="100"
-                Margin="12,0,0,0"
-                Command="{Binding ClearFiltersCommand}"
-                Content="Clear Filters" />
-        <Button Width="100"
-                Margin="12,0,0,0"
-                Command="{Binding RefreshAnalysisCommand}"
-                Content="Refresh" />
-        <Button Width="100"
-                Margin="12,0,0,0"
-                Command="{Binding CancelAnalysisCommand}"
-                Content="Cancel" />
-      </StackPanel>
+    <!-- Toolbar & Filters -->
+    <Border Grid.Row="2" Grid.ColumnSpan="3" Margin="0,0,0,16" Padding="12" Background="#FFF3F6F9" BorderBrush="#FFD0D7DE" BorderThickness="1" CornerRadius="8">
       <StackPanel>
-        <WrapPanel Margin="0,0,0,4">
-          <TextBlock Margin="0,0,8,0"
-                     VerticalAlignment="Center"
-                     Text="Search" />
-          <TextBox Width="240"
-                   Margin="0,0,12,0"
-                   Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-          <TextBlock Margin="0,0,8,0"
-                     VerticalAlignment="Center"
-                     Text="Project" />
-          <ComboBox Width="220"
-                    Margin="0,0,12,0"
-                    ItemsSource="{Binding AvailableProjectNames}"
-                    SelectedItem="{Binding SelectedProjectName, Mode=TwoWay}" />
-          <TextBlock Margin="0,0,8,0"
-                     VerticalAlignment="Center"
-                     Text="Namespace" />
-          <ComboBox Width="260"
-                    Margin="0,0,12,0"
-                    ItemsSource="{Binding AvailableNamespaceNames}"
-                    SelectedItem="{Binding SelectedNamespaceName, Mode=TwoWay}" />
-          <TextBlock Margin="0,0,8,0"
-                     VerticalAlignment="Center"
-                     Text="Access" />
-          <ComboBox Width="180"
-                    Margin="0,0,12,0"
-                    ItemsSource="{Binding AvailableAccessibilities}"
-                    SelectedItem="{Binding SelectedAccessibility, Mode=TwoWay}" />
-        </WrapPanel>
-        <WrapPanel Margin="0,0,0,4">
-          <TextBlock Margin="0,0,8,0"
-                     VerticalAlignment="Center"
-                     Text="Mode" />
-          <ComboBox Width="160"
-                    Margin="0,0,12,0"
-                    ItemsSource="{Binding AvailableDisplayModes}"
-                    SelectedItem="{Binding SelectedDisplayMode, Mode=TwoWay}" />
-          <TextBlock Margin="0,0,8,0"
-                     VerticalAlignment="Center"
-                     Text="Edge" />
-          <ComboBox Width="180"
-                    Margin="0,0,12,0"
-                    ItemsSource="{Binding AvailableEdgeKinds}"
-                    SelectedItem="{Binding SelectedEdgeKind, Mode=TwoWay}" />
-          <TextBlock Margin="0,0,8,0"
-                     VerticalAlignment="Center"
-                     Text="Node" />
-          <ComboBox Width="180"
-                    Margin="0,0,12,0"
-                    ItemsSource="{Binding AvailableNodeKinds}"
-                    SelectedItem="{Binding SelectedNodeKind, Mode=TwoWay}" />
-          <TextBlock Margin="0,0,8,0"
-                     VerticalAlignment="Center"
-                     Text="Depth" />
-          <ComboBox Width="64"
-                    Margin="0,0,12,0"
-                    ItemsSource="{Binding AvailableDepths}"
-                    SelectedItem="{Binding SelectedDepth, Mode=TwoWay}" />
-          <CheckBox Margin="0,0,12,0"
-                    VerticalAlignment="Center"
-                    Content="Exclude tests"
-                    IsChecked="{Binding ExcludeTests, Mode=TwoWay}" />
-          <CheckBox Margin="0,0,12,0"
-                    VerticalAlignment="Center"
-                    Content="Hide external"
-                    IsChecked="{Binding ExcludeExternalSymbols, Mode=TwoWay}" />
-          <CheckBox Margin="0,0,12,0"
-                    VerticalAlignment="Center"
-                    Content="Hide System.*"
-                    IsChecked="{Binding ExcludeSystemSymbols, Mode=TwoWay}" />
-          <CheckBox Margin="0,0,12,0"
-                    VerticalAlignment="Center"
-                    Content="Hide NuGet"
-                    IsChecked="{Binding ExcludePackageSymbols, Mode=TwoWay}" />
-          <CheckBox Margin="0,0,12,0"
-                    VerticalAlignment="Center"
-                    Content="Highlight interface"
-                    IsChecked="{Binding HighlightInterfaceFlow, Mode=TwoWay}" />
-          <CheckBox Margin="0,0,12,0"
-                    VerticalAlignment="Center"
-                    Content="Highlight events"
-                    IsChecked="{Binding HighlightEventFlow, Mode=TwoWay}" />
-          <CheckBox Margin="0,0,12,0"
-                    VerticalAlignment="Center"
-                    Content="Highlight async"
-                    IsChecked="{Binding HighlightAsyncFlow, Mode=TwoWay}" />
-          <TextBlock Margin="0,0,8,0"
-                     VerticalAlignment="Center"
-                     Text="Canvas nodes" />
-          <ComboBox Width="76"
-                    Margin="0,0,12,0"
-                    ItemsSource="{Binding AvailableCanvasNodeLimits}"
-                    SelectedItem="{Binding SelectedCanvasNodeLimit, Mode=TwoWay}" />
-          <CheckBox Margin="0,0,12,0"
-                    VerticalAlignment="Center"
-                    Content="Focus mode"
-                    IsChecked="{Binding CanvasFocusMode, Mode=TwoWay}" />
-          <TextBlock Margin="12,0,8,0"
-                     VerticalAlignment="Center"
-                     Text="Min confidence" />
-          <ComboBox Width="90"
-                    Margin="0,0,12,0"
-                    ItemsSource="{Binding AvailableConfidenceThresholds}"
-                    SelectedItem="{Binding SelectedMinimumConfidence, Mode=TwoWay}" />
-          <CheckBox Margin="0,0,12,0"
-                    VerticalAlignment="Center"
-                    Content="Follow caret"
-                    IsChecked="{Binding FollowCaret, Mode=TwoWay}" />
-          <CheckBox VerticalAlignment="Center"
-                    Content="Exclude generated"
-                    IsChecked="{Binding ExcludeGenerated, Mode=TwoWay}" />
-        </WrapPanel>
-        <TextBlock Text="{Binding StatusMessage}" />
-        <TextBlock Foreground="IndianRed"
-                   Text="{Binding ErrorMessage}" />
-        <ItemsControl Margin="0,6,0,0"
-                      ItemsSource="{Binding Diagnostics}"
-                      Visibility="{Binding HasDiagnostics, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <!-- Primary Toolbar -->
+        <DockPanel LastChildFill="True">
+          <!-- Main Actions (Right) -->
+          <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
+            <Button Width="80" Height="28" Margin="8,0,0,0" Command="{Binding RefreshAnalysisCommand}" Content="Refresh" Background="#FF0078D4" Foreground="White" BorderThickness="0" FontWeight="SemiBold" />
+            <Button Width="80" Height="28" Margin="8,0,0,0" Command="{Binding CancelAnalysisCommand}" Content="Cancel" />
+            <Separator Margin="12,4" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+            <Menu Background="Transparent" VerticalAlignment="Center">
+              <MenuItem Header="Export..." FontSize="12" Padding="8,4">
+                <MenuItem Header="Export JSON" Command="{Binding ExportJsonCommand}" />
+                <MenuItem Header="Export ViewModel JSON" Command="{Binding ExportViewModelJsonCommand}" />
+                <MenuItem Header="Export DGML" Command="{Binding ExportDgmlCommand}" />
+              </MenuItem>
+            </Menu>
+            <Button Width="90" Height="28" Margin="8,0,0,0" Command="{Binding ClearFiltersCommand}" Content="Reset Filters" />
+          </StackPanel>
+
+          <!-- Search (Left) -->
+          <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <TextBlock VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,8,0" Text="Search:" />
+            <TextBox Width="280" Height="28" VerticalContentAlignment="Center" Padding="4,0" Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            
+            <TextBlock VerticalAlignment="Center" FontWeight="SemiBold" Margin="16,0,8,0" Text="Depth:" />
+            <ComboBox Width="60" Height="28" ItemsSource="{Binding AvailableDepths}" SelectedItem="{Binding SelectedDepth, Mode=TwoWay}" />
+          </StackPanel>
+        </DockPanel>
+
+        <!-- Advanced Filters (Collapsible) -->
+        <Expander Margin="0,8,0,0" Header="Advanced Filters &amp; Visual Settings" FontSize="11" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">
+          <Border Margin="0,4,0,0" Padding="8" Background="White" BorderBrush="#FFE0E0E0" BorderThickness="1" CornerRadius="4">
+            <StackPanel>
+              <WrapPanel Margin="0,0,0,8">
+                <StackPanel Margin="0,0,16,4">
+                  <TextBlock FontWeight="SemiBold" Margin="0,0,0,4" Text="Context Filters" />
+                  <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Margin="0,0,4,0" Text="Project:" />
+                    <ComboBox Width="180" ItemsSource="{Binding AvailableProjectNames}" SelectedItem="{Binding SelectedProjectName, Mode=TwoWay}" />
+                    <TextBlock VerticalAlignment="Center" Margin="12,0,4,0" Text="Namespace:" />
+                    <ComboBox Width="200" ItemsSource="{Binding AvailableNamespaceNames}" SelectedItem="{Binding SelectedNamespaceName, Mode=TwoWay}" />
+                  </StackPanel>
+                </StackPanel>
+
+                <StackPanel Margin="0,0,16,4">
+                  <TextBlock FontWeight="SemiBold" Margin="0,0,0,4" Text="Symbol Filters" />
+                  <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Margin="0,0,4,0" Text="Access:" />
+                    <ComboBox Width="100" ItemsSource="{Binding AvailableAccessibilities}" SelectedItem="{Binding SelectedAccessibility, Mode=TwoWay}" />
+                    <TextBlock VerticalAlignment="Center" Margin="12,0,4,0" Text="Node:" />
+                    <ComboBox Width="120" ItemsSource="{Binding AvailableNodeKinds}" SelectedItem="{Binding SelectedNodeKind, Mode=TwoWay}" />
+                  </StackPanel>
+                </StackPanel>
+              </WrapPanel>
+
+              <Separator Margin="0,4,0,8" />
+
+              <WrapPanel>
+                <CheckBox Margin="0,0,16,8" Content="Exclude tests" IsChecked="{Binding ExcludeTests, Mode=TwoWay}" />
+                <CheckBox Margin="0,0,16,8" Content="Exclude generated" IsChecked="{Binding ExcludeGenerated, Mode=TwoWay}" />
+                <CheckBox Margin="0,0,16,8" Content="Hide external" IsChecked="{Binding ExcludeExternalSymbols, Mode=TwoWay}" />
+                <CheckBox Margin="0,0,16,8" Content="Hide System.*" IsChecked="{Binding ExcludeSystemSymbols, Mode=TwoWay}" />
+                <CheckBox Margin="0,0,16,8" Content="Hide NuGet" IsChecked="{Binding ExcludePackageSymbols, Mode=TwoWay}" />
+                <Separator Width="1" Height="16" Margin="8,0" Background="#FFDDDDDD" />
+                <CheckBox Margin="0,0,16,8" Content="Highlight interface" IsChecked="{Binding HighlightInterfaceFlow, Mode=TwoWay}" />
+                <CheckBox Margin="0,0,16,8" Content="Highlight events" IsChecked="{Binding HighlightEventFlow, Mode=TwoWay}" />
+                <CheckBox Margin="0,0,16,8" Content="Highlight async" IsChecked="{Binding HighlightAsyncFlow, Mode=TwoWay}" />
+                <Separator Width="1" Height="16" Margin="8,0" Background="#FFDDDDDD" />
+                <CheckBox Margin="0,0,16,8" Content="Follow caret" IsChecked="{Binding FollowCaret, Mode=TwoWay}" FontWeight="SemiBold" />
+                <CheckBox Margin="0,0,16,8" Content="Canvas focus" IsChecked="{Binding CanvasFocusMode, Mode=TwoWay}" />
+              </WrapPanel>
+
+              <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                <TextBlock VerticalAlignment="Center" Margin="0,0,8,0" Text="Min confidence:" />
+                <ComboBox Width="80" ItemsSource="{Binding AvailableConfidenceThresholds}" SelectedItem="{Binding SelectedMinimumConfidence, Mode=TwoWay}" />
+                <TextBlock VerticalAlignment="Center" Margin="24,0,8,0" Text="Mode:" />
+                <ComboBox Width="140" ItemsSource="{Binding AvailableDisplayModes}" SelectedItem="{Binding SelectedDisplayMode, Mode=TwoWay}" />
+                <TextBlock VerticalAlignment="Center" Margin="24,0,8,0" Text="Canvas Limit:" />
+                <ComboBox Width="60" ItemsSource="{Binding AvailableCanvasNodeLimits}" SelectedItem="{Binding SelectedCanvasNodeLimit, Mode=TwoWay}" />
+              </StackPanel>
+            </StackPanel>
+          </Border>
+        </Expander>
+
+        <!-- Status Messages -->
+        <StackPanel Margin="0,8,0,0">
+          <TextBlock FontSize="11" FontStyle="Italic" Foreground="#FF005A9E" Text="{Binding StatusMessage}" />
+          <TextBlock FontSize="11" FontWeight="Bold" Foreground="IndianRed" Text="{Binding ErrorMessage}" />
+        </StackPanel>
+
+        <!-- Diagnostics -->
+        <ItemsControl Margin="0,4,0,0" ItemsSource="{Binding Diagnostics}" Visibility="{Binding HasDiagnostics, Converter={StaticResource BooleanToVisibilityConverter}}">
           <ItemsControl.ItemTemplate>
             <DataTemplate>
-              <Border Margin="0,0,0,4"
-                      Padding="6"
-                      Background="#11CC7A00"
-                      BorderBrush="#33CC7A00"
-                      BorderThickness="1">
-                <StackPanel>
-                  <TextBlock FontWeight="SemiBold"
-                             Text="{Binding Code}" />
-                  <TextBlock Text="{Binding Message}"
-                             TextWrapping="Wrap" />
-                </StackPanel>
+              <Border Margin="0,0,0,4" Padding="8" Background="#FFFDF4E3" BorderBrush="#FFE2C08D" BorderThickness="1" CornerRadius="4">
+                <DockPanel>
+                  <TextBlock DockPanel.Dock="Left" FontWeight="Bold" Margin="0,0,8,0" Text="{Binding Code}" />
+                  <TextBlock Text="{Binding Message}" TextWrapping="Wrap" />
+                </DockPanel>
               </Border>
             </DataTemplate>
           </ItemsControl.ItemTemplate>
         </ItemsControl>
       </StackPanel>
-    </DockPanel>
+    </Border>
 
     <GroupBox Grid.Row="3"
               Grid.ColumnSpan="3"

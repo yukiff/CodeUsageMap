@@ -56,7 +56,7 @@ internal sealed class UsageMapExportService
             Directory.CreateDirectory(directory);
         }
 
-        await File.WriteAllTextAsync(dialog.FileName, content, cancellationToken);
+        File.WriteAllText(dialog.FileName, content);
         return dialog.FileName;
     }
 

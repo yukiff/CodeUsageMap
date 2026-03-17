@@ -66,9 +66,10 @@ internal sealed class CaretFollowController
     {
         try
         {
-            using var timer = new PeriodicTimer(FollowCaretDebounce);
-            while (await timer.WaitForNextTickAsync(cancellationToken))
+            while (!cancellationToken.IsCancellationRequested)
             {
+                await Task.Delay(FollowCaretDebounce, cancellationToken);
+                
                 var context = await _symbolContextService.TryGetCurrentContextAsync(cancellationToken);
                 if (context is null)
                 {

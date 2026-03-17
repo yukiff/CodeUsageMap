@@ -1276,7 +1276,7 @@ internal sealed class UsageMapViewModel : ViewModelBase
         const double maxWidth = 180d;
         const double maxHeight = 120d;
         var scale = Math.Min(maxWidth / GraphCanvasWidth, maxHeight / GraphCanvasHeight);
-        scale = double.IsFinite(scale) && scale > 0d ? scale : 1d;
+        scale = !double.IsNaN(scale) && !double.IsInfinity(scale) && scale > 0d ? scale : 1d;
 
         MiniMapWidth = Math.Max(120d, GraphCanvasWidth * scale);
         MiniMapHeight = Math.Max(72d, GraphCanvasHeight * scale);

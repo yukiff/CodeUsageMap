@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 namespace CodeUsageMap.Core.Compatibility
 {
 
-internal static class Guard
+public static class Guard
 {
     public static void NotNull(object value, string paramName)
     {

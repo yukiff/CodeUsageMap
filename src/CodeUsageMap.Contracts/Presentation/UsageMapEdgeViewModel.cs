@@ -12,6 +12,8 @@ public sealed class UsageMapEdgeViewModel
     public required string TargetId { get; init; }
 
     public EdgeKind Kind { get; init; } = EdgeKind.Reference;
+    
+    public CanvasNodeLane Lane { get; init; } = CanvasNodeLane.Center;
 
     public string Label { get; init; } = string.Empty;
 
