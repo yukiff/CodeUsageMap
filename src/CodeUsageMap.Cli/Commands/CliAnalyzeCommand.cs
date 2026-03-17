@@ -63,7 +63,7 @@ public sealed class CliAnalyzeCommand
             Directory.CreateDirectory(outputDirectory);
         }
 
-        await File.WriteAllTextAsync(options.OutputPath, output, cancellationToken);
+        File.WriteAllText(options.OutputPath, output);
         _reporter.WriteSummary(result, options.OutputPath);
         return 0;
     }

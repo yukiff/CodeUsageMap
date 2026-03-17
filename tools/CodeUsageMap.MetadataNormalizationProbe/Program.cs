@@ -6,7 +6,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 
-var libraryDllPath = Path.GetFullPath("tests/CodeUsageMap.Integration.Tests/bin/Debug/net9.0/CodeUsageMap.Integration.Tests.dll");
+var libraryDllPath = Path.GetFullPath("tests/CodeUsageMap.Integration.Tests/bin/Debug/net472/CodeUsageMap.Integration.Tests.dll");
 var librarySourcePath = Path.GetFullPath("tests/CodeUsageMap.Integration.Tests/OutgoingDepthSamples.cs");
 
 if (!File.Exists(libraryDllPath))

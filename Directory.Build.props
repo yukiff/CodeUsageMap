@@ -3,5 +3,6 @@
     <DotNetSdkDir>$([MSBuild]::EnsureTrailingSlash($([System.IO.Path]::GetFullPath('$(MSBuildSDKsPath)/..'))))</DotNetSdkDir>
     <DotNetSdkToolDir>$([MSBuild]::EnsureTrailingSlash('$(DotNetSdkDir)DotnetTools/dotnet-format'))</DotNetSdkToolDir>
     <RoslynBuildHostDir>$([MSBuild]::EnsureTrailingSlash('$(DotNetSdkToolDir)BuildHost-netcore'))</RoslynBuildHostDir>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 </Project>
